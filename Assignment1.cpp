@@ -27,3 +27,9 @@ int main() {
 
 
 
+
+
+
+// comments are ignored by the compiler
+// single line comment
+
