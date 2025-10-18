@@ -1,1 +1,3 @@
 # w1Assignment1
+
+TYPING SOME TEXT FOR FUN
