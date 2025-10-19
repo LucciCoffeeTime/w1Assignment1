@@ -4,7 +4,7 @@
 
 int main() {
 
-	using namespace std;			// allows us to use cout and cin without std::
+	using namespace std;			// allows the user to use cout, cin, and endl without std::
 
 	string game;						// this variable stores the name of the game
 	string enemyrace;					// this variable stores the name of the enemy
