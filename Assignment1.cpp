@@ -23,8 +23,8 @@ int main() {
 	string action7;  			// this variable stores the seventh action of the enemy
 
 	int enemyhealth = 10;			// this variable stores the initial full health of the enemy
-	int enemyremaininghealth;	// this variable stores the remaining health of the enemy after being attack once
-	int damagedone;			// this variable stores the calculated damage done to the enemy
+	int enemyremaininghealth = 0;	// this variable stores the remaining health of the enemy after being attack once
+	int damagedone = 0;			// this variable stores the calculated damage done to the enemy
 	//*************************************************************************************************************************
 
 
