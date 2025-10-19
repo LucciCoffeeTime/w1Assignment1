@@ -3,7 +3,7 @@
 
 ### INFORMATION ABOUT WHAT THIS PROGRAM DOES
 
-This program is a combatant documentor. Imagine a video game just launched and a vague amount of information exists about the enemies throughout the game. This program is a small way to document information about an encountered foe. (THIS PROGRAM IS LIMITED TO WEEK 1 TEACHINGS SO A SET AMOUNT OF HEALTH IS CHOSEN FOR ANY ENEMY DOCUMENTED)
+This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a small way to document information about an encountered foe. (THIS PROGRAM IS LIMITED TO WEEK 1 TEACHINGS SO A SET AMOUNT OF HEALTH IS CHOSEN FOR ANY ENEMY DOCUMENTED)
 
 
 
