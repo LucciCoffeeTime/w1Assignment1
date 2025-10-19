@@ -21,10 +21,10 @@ This program is a combatant documentor. Imagine a video game just launched and a
 - Once the value is given a difference will be calculated to document what health the enemy had when he used certain actions. Some enemies in video games will have actions that only become usable when it reaches a certain threshhold of remaining health. For this program there will be no extra actions.
 
 (STEP 5): The program will ask the user to input 7 observed actions for the enemy.
-- This is a crucial part of the documentation.
+- This is a crucial part of the documentation alongside other pieces of information. Information is power and dominion over the enemies. The more you know about an enemy, the higher the chance you will have to clear the fight.
 
 (CONCLUSION): After steps 1-5 are completed, the program will thank the user for the inputs and display all the information back one more time.
-- In an actual program, before ending, this would prompt the user to verify the information and make appropriate changes.
+- In an actual full program, before ending, this would prompt the user to verify the information and make appropriate changes.
 
 Thank you for obseriving my program. I hope to expand on enemy dicision structures in the future.
 
