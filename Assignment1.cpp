@@ -11,6 +11,8 @@ int main() {
 	// This section declares all the variables used in this program
 	//*************************************************************************************************************************
 
+	
+	
 	string game;				// this variable stores the name of the game
 	string enemyrace;			// this variable stores the name of the enemy
 	string enemyclassification;  // this variable stores the classification of the enemy	
@@ -21,6 +23,8 @@ int main() {
 	string action5;  			// this variable stores the fifth action of the enemy
 	string action6;  			// this variable stores the sixth action of the enemy
 	string action7;  			// this variable stores the seventh action of the enemy
+
+
 
 	int enemyhealth = 10;			// this variable stores the initial full health of the enemy
 	int enemyremaininghealth = 0;	// this variable stores the remaining health of the enemy after being attack once
@@ -33,6 +37,8 @@ int main() {
 	//******************************************************************************************************************
 	// The section below contains the main code of the program
 	//******************************************************************************************************************
+
+
 
 
 	// this section instructs the user to input the required information and avoid using spaces
