@@ -1,6 +1,12 @@
 
 
 #include <iostream> // This is the library required for cout and cin
+#include <iomanip>  // This lets me use setprecision
+#include <string>   // This lets me use string variables even though my compiler may support it by default
+#include <fstream>  // This lets me use file input and output
+
+
+
 
 int main() {
 
@@ -12,7 +18,9 @@ int main() {
 	//*************************************************************************************************************************
 
 	
-	
+	string border_long = "=============================================================="; // these variables store border designs for output formatting
+	string border_short = "==============================";                                // these variables store border designs for output formatting
+
 	string game;				// this variable stores the name of the game
 	string enemyrace;			// this variable stores the name of the enemy
 	string enemyclassification;  // this variable stores the classification of the enemy	
@@ -33,6 +41,10 @@ int main() {
 
 
 
+	
+
+
+	
 
 	//******************************************************************************************************************
 	// The section below contains the main code of the program
