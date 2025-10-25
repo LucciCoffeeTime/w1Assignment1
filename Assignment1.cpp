@@ -143,25 +143,29 @@ int main() {
 	cout << border_short << border_short << endl;
 	cout << " " << endl;
 	cout << "Range of Action 1: " << action1 << endl;
-	if (cin >> range_1_m)
+	if (cin >> range_1_m) {
+	}
 	else {
 		cout << "INVALID INPUT. PLEASE RESTART THE PROGRAM AND ENTER A DECIMAL VALUE." << endl;
 		return 0; // Exit the program with an error code
 	}
 	cout << "Range of Action 2: " << action2 << endl;
-	if (cin >> range_2_m)
+	if (cin >> range_2_m) {
+	}
 	else {
 		cout << "INVALID INPUT. PLEASE RESTART THE PROGRAM AND ENTER A DECIMAL VALUE." << endl;
 		return 0; // Exit the program with an error code
 	}
 	cout << "Range of Action 3: " << action3 << endl;
-	if (cin >> range_3_m)
+	if (cin >> range_3_m) {
+	}
 	else {
 		cout << "INVALID INPUT. PLEASE RESTART THE PROGRAM AND ENTER A DECIMAL VALUE." << endl;
 		return 0; // Exit the program with an error code
 	}
 	cout << "Range of Action 4: " << action4 << endl;
-	if (cin >> range_4_m)
+	if (cin >> range_4_m) {
+	}
 	else {
 		cout << "INVALID INPUT. PLEASE RESTART THE PROGRAM AND ENTER A DECIMAL VALUE." << endl;
 		return 0; // Exit the program with an error code
@@ -192,7 +196,7 @@ int main() {
 	outdata << left << setw(30) << "ACTION 1 + Distance" << setw(30) << "ACTION 2 + Distance" << setw(30) << "ACTION 3 + Distance" << setw(30) << "ACTION 4 + Distance" << endl;
 	outdata << border_mega_long_thin << endl;
 	outdata << left << setw(30) << action1 << setw(30) << action2 << setw(30) << action3 << setw(30) << action4 << endl;
-	outdata << left << setw(30) << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
+	outdata << left << setprecision(2) << fixed << setw(30) << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
 	outdata << endl;
 	outdata << right << setw(75) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
 	outdata << right << setw(34) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << average_range_m * 2 << " meters" << endl;

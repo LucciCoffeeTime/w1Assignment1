@@ -13,11 +13,11 @@ DESTINY 2                     CABAL                         BOSS                
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-FIRE BALL                     FROST BREATH                  FLY                           FIRE BREATH                   
-63.420000                     12.340000                     99.000000                     12.340000                     
+FIRE BALL                     FROST BALL                    FLY                           GREAT LEAP                    
+12.34                         12.34                         93.62                         23.41                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             46.77 meters   |  Recomended safe distance: 93.55 meters
+                             35.43 meters   |  Recomended safe distance: 70.86 meters
  
 ==================================================================================================================
                                    THANK YOU FOR USING THE INFORMATION PROVIDED!
