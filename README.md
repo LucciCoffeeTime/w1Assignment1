@@ -32,5 +32,5 @@ This program is a combatant documentor. Imagine a video game recently launched a
 Thank you for viewing my program. I hope to expand on enemy dicision structures in the future.
 
 ## AN IDEA OF WHAT THE PROGRAM MIGHT FEATURE IN THE FUTURE IF WE ARE ALLOWED TO CONTINUE WORKING ON IT
-Eventually, I want this program to be more accessible to user input and be able to document more information. Features like action-health-gates, speeds, location, relocation, and more might be added. I want to gain a full understanding of how decision structures work. Coding this program is my way to understand it.
+Eventually, I want this program to be more accessible to user input and be able to document more information. Features like action-health-gates, speeds, location, relocation, and more might be added. However, I am very limited right now due to not being able to use loops. Eventually, I want to gain a full understanding of how decision structures work. Coding this program is my way to understand it.
 
