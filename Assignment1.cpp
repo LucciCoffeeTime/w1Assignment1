@@ -53,9 +53,13 @@ int main() {
 
 
 
+
+
 	//******************************************************************************************************************
 	// The section below contains the main code of the program
 	//******************************************************************************************************************
+
+
 
 
 
@@ -127,6 +131,7 @@ int main() {
 
 
 
+
 	// this section collects 4 actions of the enemy, how far they reached, and calculates the average distance of the actions.
 	// it also validates the input to ensure only decimal values are accepted
 	//
@@ -181,9 +186,14 @@ int main() {
 
 
 
+
+
+
 	// this section outputs all collected and calculated data to a text file
+	// it will provide a nice summary of all the information gathered from the user and upload it to "report.txt"
 	//
 	outdata.open("report.txt");  // this line opens the file for input operations
+
 	outdata << "\n\n" << endl;
 	outdata << border_mega_long << endl;
 	outdata << setw(76) << "SUMMARY OF THE ENEMY DOCUMENTATION: " << endl;
@@ -218,7 +228,10 @@ int main() {
 
 
 
+
+
 	// this section outputs all collected and calculated data to the console
+	// it will provide a nice summary of all the information gathered from the user and display it in the temrinal window
 	//
 	cout << "\n\n" << endl;
 	cout << border_mega_long << endl;
