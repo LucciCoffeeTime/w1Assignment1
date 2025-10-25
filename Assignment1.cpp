@@ -2,7 +2,7 @@
 
 #include <iostream> // This is the library required for cout and cin
 #include <iomanip>  // This lets me use setprecision
-#include <string>   // This lets me use string variables even though my compiler may support it by default
+#include <string>   // This lets me use string variables
 #include <fstream>  // This lets me use file input and output
 
 
@@ -238,7 +238,7 @@ int main() {
 	cout << right << setw(30) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << average_range_m * 2 << " meters" << endl;
 	cout << " " << endl;
 	cout << border_mega_long << endl;
-	cout << right << setw(80) << "THANK YOU FOR USING THE INFORMATION PROVIDED!" << endl;
+	cout << right << setw(80) << "THANK YOU FOR THE INFORMATION PROVIDED!" << endl;
 	cout << right << setw(88) << "it will be documented immediately for future players to use!" << endl;
 	cout << border_mega_long << endl;
 	cout << " " << endl;
