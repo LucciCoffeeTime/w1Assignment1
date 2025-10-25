@@ -1,5 +1,35 @@
 
 
+
+//*************************************************************************************************************************
+// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM!
+// This program collects data about an enemy encountered in a video game, makes a nice summary of all the information 
+// provided and calculated then stores it in a text file and displays it in the console for the user to see.
+//*************************************************************************************************************************
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// You will provide the following information:
+// - Name of the game being played
+// - Race of the enemy encountered
+// - Classification of the enemy (BOSS, ELITE, MAJOR, MINOR)
+// - Remaining health of the enemy when first encountered (full health is 10)
+// - 4 actions the enemy performs
+// - The distance each action reached (in meters) (decimal values allowed)
+//
+// The program will then calculate:
+// - The damage done to the enemy based on its remaining health
+// - The average range of the enemy actions
+// - A recommended safe distance to stay away from the enemy (double the average range)
+//
+// The program will then output all the collected and calculated data to a text file named "report.txt" and display
+// it in the console for the user to review.
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//*************************************************************************************************************************
+
+
+
+
 #include <iostream> // This is the library required for cout and cin
 #include <iomanip>  // This lets me use setprecision
 #include <string>   // This lets me use string variables
