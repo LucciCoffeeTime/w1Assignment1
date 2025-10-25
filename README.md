@@ -1,9 +1,9 @@
-# WEEK 1 - PROGRAMMING ASSIGNMENT
+# WEEK 2 - PROGRAMMING ASSIGNMENT
 
 
 ### INFORMATION ABOUT WHAT THIS PROGRAM DOES
 
-This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a small way to document information about an encountered foe. (THIS PROGRAM IS LIMITED TO WEEK 1 TEACHINGS SO A SET AMOUNT OF HEALTH IS CHOSEN FOR ANY ENEMY DOCUMENTED)
+This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a way to document information about an encountered foe. (THIS PROGRAM IS LIMITED TO WEEK 2 TEACHINGS SO SOME THINGS WILL LIMIT USER INPUT)
 
 
 
@@ -20,11 +20,17 @@ This program is a combatant documentor. Imagine a video game recently launched a
 - Because of limitations to week 1 teachings, the initial health will be defaulted to 10 and users are asked to input a value between 1-10 for proper functioning of the program.
 - Once the value is given a difference will be calculated to document what health the enemy had when he used certain actions. Some enemies in video games will have actions that only become usable when it reaches a certain threshhold of remaining health. For this program there will be no extra actions.
 
-(STEP 5): The program will ask the user to input 7 observed actions for the enemy.
+(STEP 5): The program will ask the user to input 4 observed actions for the enemy.
 - This is a crucial part of the documentation alongside other pieces of information. Information is power and dominion over the enemies. The more you know about an enemy, the higher the chance you will have to clear the fight.
 
-(CONCLUSION): After steps 1-5 are completed, the program will thank the user for the inputs and display all the information back one more time.
-- In an actual full program, before ending, this would prompt the user to verify the information and make appropriate changes.
+(STEP 6): The program will ask the user to input ranges for each enemy action provided.
+- These ranges not only inform players of the distance each action can cover, but also allows a safe distance to be calculated and recommended.
 
-Thank you for obseriving my program. I hope to expand on enemy dicision structures in the future.
+(CONCLUSION): After steps 1-6 are completed, the program will open a file named "report.txt" and write a pretty summary of all information provided and the calculated values (this acts as a form of documentation for now). The program will then display the same summary to the console terminal.
+- In an actual full program, before writing the summary, this would prompt the user to verify the information and make appropriate changes.
+
+Thank you for viewing my program. I hope to expand on enemy dicision structures in the future.
+
+## AN IDEA OF WHAT THE PROGRAM MIGHT FEATURE IN THE FUTURE IF WE ARE ALLOWED TO CONTINUE WORKING ON IT
+Eventually, I want this program to be more accesible to user input and be able to document more information. Features like action-health-gates, speeds, location, relocation, and more might be added. I want to gain a full understanding of how decision structures work. Coding this program is my way to understand it.
 
