@@ -2,11 +2,13 @@
 
 
 //*************************************************************************************************************************
+//
 // WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM!
 // This program collects data about an enemy encountered in a video game, makes a nice summary of all the information 
 // provided and calculated then stores it in a text file and displays it in the console for the user to see.
+//
 //*************************************************************************************************************************
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 //
 // You will provide the following information:
 // - Name of the game being played
@@ -21,10 +23,10 @@
 // - The average range of the enemy actions
 // - A recommended safe distance to stay away from the enemy (double the average range)
 //
-// The program will then output all the collected and calculated data to a text file named "report.txt" and display
+// The program will finally output all the collected and calculated data to a text file named "report.txt" and display
 // it in the console for the user to review.
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
 //*************************************************************************************************************************
 
 
