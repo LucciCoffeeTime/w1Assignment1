@@ -241,7 +241,7 @@ int main() {
 	outdata << left << setprecision(2) << fixed << setw(30) << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
 	outdata << endl;
 	outdata << right << setw(75) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
-	outdata << right << setw(34) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << average_range_m * 2 << " meters" << endl;
+	outdata << setprecision(2) << fixed << right << setw(34) << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << average_range_m * 2 << " meters" << endl;
 	outdata << " " << endl;
 	outdata << border_mega_long << endl;
 	outdata << right << setw(80) << "THANK YOU FOR USING THE INFORMATION PROVIDED!" << endl;
@@ -277,7 +277,7 @@ int main() {
 	cout << left << setw(30) << "ACTION 1 + Distance" << setw(30) << "ACTION 2 + Distance" << setw(30) << "ACTION 3 + Distance" << setw(30) << "ACTION 4 + Distance" << endl;
 	cout << border_mega_long_thin << endl;
 	cout << left << setw(30) << action1 << setw(30) << action2 << setw(30) << action3 << setw(30) << action4 << endl;
-	cout << left << setw(30) << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
+	cout << left << setw(30) << setprecision(2) << fixed << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
 	cout << endl;
 	cout << right << setw(74) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
 	cout << right << setw(30) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << average_range_m * 2 << " meters" << endl;
