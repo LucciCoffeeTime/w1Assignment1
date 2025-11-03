@@ -84,7 +84,7 @@ int main() {
 	int menu_choice;               		// this variable stores the menu choice input by the user
 
 	bool flag = false;					// this variable is a killswitch for the enemyclassification portion of the program
-	
+
 	ofstream outdata;					// this variable is used for file output operations
 
 
@@ -331,8 +331,7 @@ int main() {
 	//
 	// this section collects the menu choice from the user and validates the input
 	//
-	if (!(cin >> menu_choice && menu_choice >= 1 && menu_choice <= 3))
-	{
+	if (!(cin >> menu_choice)){
 		cout << "INVALID INPUT. PLEASE RESTART THE PROGRAM AND ENTER A VALID INTEGER VALUE." << endl;
 		return 0; // Exit the program with an error code
 	}
@@ -379,6 +378,10 @@ int main() {
 			cout << "RACE PROVIDED: " << enemyrace << endl;
 			cout << "CLASSIFICATION PROVIDED: " << enemyclassification << endl;
 			cout << "OBSERVED REMAINING HEALTH: " << enemyremaininghealth << endl;
+			cout << "OBSERVED ACTION 1: " << action1 << endl;
+			cout << "OBSERVED ACTION 2: " << action2 << endl;
+			cout << "OBSERVED ACTION 3: " << action3 << endl;
+			cout << "OBSERVED ACTION 4: " << action4 << endl;
 			cout << "RANGE OF ACTION 1: " << range_1_m << " meters" << endl;
 			cout << "RANGE OF ACTION 2: " << range_2_m << " meters" << endl;
 			cout << "RANGE OF ACTION 3: " << range_3_m << " meters" << endl;
