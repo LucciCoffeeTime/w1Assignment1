@@ -5,7 +5,8 @@
 //
 // WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM!
 // This program collects data about an enemy encountered in a video game, makes a nice summary of all the information 
-// provided and calculated then stores it in a text file and displays it in the console for the user to see.
+// provided and calculated then stores it in a text file and offers a menu choice of the following 3 options:
+// 1 to view the summary, 2 to view all given inputs, and 3 to end the program.
 //
 //*************************************************************************************************************************
 //
@@ -30,7 +31,7 @@
 // 2. Review the input choices made
 // 3. Exit the program
 //
-// IF AN INVALID INPUT IS ENTERED AT ANY TIME, THE PROGRAM WILL PROMPT THE USER TO RESTART THE PROGRAM AND ENTER A VALID INPUT.
+// IF AN INVALID INPUT IS ENTERED AT ANY CRITICAL, THE PROGRAM WILL PROMPT THE USER TO RESTART THE PROGRAM AND ENTER A VALID INPUT AND RETURN 0, ENDING ITS RUN.
 //
 //*************************************************************************************************************************
 
@@ -286,7 +287,7 @@ int main() {
 	outdata << left << setprecision(2) << fixed << setw(30) << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
 	outdata << endl;
 	outdata << right << setw(75) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
-	outdata << setprecision(2) << fixed << right << setw(34) << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << recommended_safe_distance_m << " meters" << endl;
+	outdata << setprecision(2) << fixed << right << setw(34) << average_range_m << " meters " << "  |  " << "Recommended safe distance: " << recommended_safe_distance_m << " meters" << endl;
 	outdata << " " << endl;
 	outdata << border_mega_long << endl;
 	outdata << right << setw(80) << "THANK YOU FOR USING THE INFORMATION PROVIDED!" << endl;
@@ -360,7 +361,7 @@ int main() {
 			cout << left << setw(30) << setprecision(2) << fixed << range_1_m << setw(30) << range_2_m << setw(30) << range_3_m << setw(30) << range_4_m << endl;
 			cout << endl;
 			cout << right << setw(74) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
-			cout << right << setw(30) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recomended safe distance: " << recommended_safe_distance_m << " meters" << endl;
+			cout << right << setw(30) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recommended safe distance: " << recommended_safe_distance_m << " meters" << endl;
 			cout << " " << endl;
 			cout << border_mega_long << endl;
 			cout << right << setw(80) << "THANK YOU FOR THE INFORMATION PROVIDED!" << endl;
