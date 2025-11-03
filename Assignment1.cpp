@@ -84,6 +84,7 @@ int main() {
 	int menu_choice;               		// this variable stores the menu choice input by the user
 
 	bool flag = false;					// this variable is a killswitch for the enemyclassification portion of the program
+	
 	ofstream outdata;					// this variable is used for file output operations
 
 
