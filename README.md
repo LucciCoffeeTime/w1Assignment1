@@ -3,8 +3,7 @@
 
 ### INFORMATION ABOUT WHAT THIS PROGRAM DOES
 
-This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a way to document information about an encountered foe. (THIS PROGRAM IS LIMITED TO WEEK 3 TEACHINGS SO SOME INCONVIENCES LIKE HAVING TO RESTART THE PROGRAM FOR NOT USING A CORRECT VARIABLE IS PRESENT IN ABUNDANCE)
-
+This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a way to document information about an encountered foe.
 
 
 (STEP 1): The program will ask the user which video game they are currently playing.
@@ -20,7 +19,10 @@ This program is a combatant documentor. Imagine a video game recently launched a
 - Please follow the instructures and give proper inputs otherwise the program will error and end.
 - Once the value is given a difference will be calculated to document what health the enemy had when he used certain actions. Some enemies in video games will have actions that only become usable when it reaches a certain threshhold of remaining health. For this program there will be no extra actions.
 
-(STEP 5): The program will ask the user to input 4 observed actions for the enemy.
+(INBETWEEN 4-5): The program will ask the user if the input information is correct and if they would like to restart, exit, or continue.
+- This is a validation section to ensure all the information is correct and give a chance to fix it.
+
+(STEP 5): The program will ask the user to input between 1-4 observed actions for the enemy based on the classification.
 - This is a crucial part of the documentation alongside other pieces of information. Information is power and dominion over the enemies. The more you know about an enemy, the higher the chance you will have to clear the fight.
 
 (STEP 6): The program will ask the user to input ranges for each enemy action provided.
@@ -33,7 +35,6 @@ This program is a combatant documentor. Imagine a video game recently launched a
 - 1: TO VIEW THE SUMMARY
 - 2: TO REVIEW ALL USER INPUTS
 - 3: TO END THE PROGRAM
-- if an incorrect option is chosen or a wrong variable value is given the program will end with an error.
 
 Thank you for viewing my program. I hope to expand on enemy dicision structures in the future.
 
