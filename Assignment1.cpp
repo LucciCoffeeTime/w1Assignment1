@@ -48,328 +48,321 @@
 #include <iomanip>  // This lets me use setprecision
 #include <string>   // This lets me use string variables
 #include <fstream>  // This lets me use file input and output
-
-int main() {
-
-	using namespace std;			// allows the user to use cout, cin, and endl without std::
+#include <windows.h>
+using namespace std; // allows the user to use cout, cin, and endl without std::
 
 
-	//*************************************************************************************************************************
-	// This section declares all the variables used in this program
-	//*************************************************************************************************************************
-                           
+// GLOBAL KILLSWITCH VARIABLES
+bool flag = false;					// THIS ONE KILLS LOOPS
+bool killswitch = false;			// THIS ONE KILLS THE PROGRAM
+string end_or_continue;				// THIS ONE ASKS THE USER IF THEY WANT TO KILL SOMETHING
 
-	string game;						// this variable stores the name of the game
-	string enemyrace;					// this variable stores the name of the enemy
-	string enemyclassification; 		// this variable stores the classification of the enemy	
-
-	string action1;  					// this variable stores the first action of the enemy
-	string action2;  					// this variable stores the second action of the enemy
-	string action3;  					// this variable stores the third action of the enemy
-	string action4;  
+// GLOBAL FILE VARIABLE
+ofstream outdata;	
 
 
-	string end_or_continue;				// THESE VARIABLES CONTROL THE CHOICE TO END THE PROGRAM MID LOOP OR RESTART THE PROGRAM
-	string loop_termination_confirmer_1;//
-	
-
-	double range_1_m;             		// these variables store the ranges (in meters) of the enemy actions
-	double range_2_m;					//
-	double range_3_m;					//
-	double range_4_m;					//
-
-	double range_value_holder;			// THIS VARIABLE WILL BE USED TO TRANSFER RANGES WHILE USING A LOOP.
-	double average_range_m;				// this variable stores the calculated average range of the enemy actions
-	double recommended_safe_distance_m; // this variable stores the calculated recommended safe distance from the enemy
 
 
-	int maximum_enemyhealth = 0;		// this variable stores the initial full health of the enemy
-	int enemyremaininghealth = 0;		// this variable stores the remaining health of the enemy after being attack once
-	int damagedone = 0;					// this variable stores the calculated damage done to the enemy
-	int menu_choice;               		// this variable stores the menu choice input by the user
-	int action_count = 0;				// THIS VARIABLE STORES THE ACTION COUNT OF THE ENEMY BASED ON THE CLASSIFICATION
-
-	int i_reset_to_one = 1;
-	int health_storage_review;			// THIS STORES THE MAX HEALTH OF THE ENEMY BASED ON THE CLASSIFICATION. IT WILL BE USED DURING THE REVIEW
-
-	bool flag = false;					// this variable is a killswitch for the enemyclassification portion of the program
 
 
-	ofstream outdata;					// this variable is used for file output operations
+// CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  
+// CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  
+// CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  // CHANGE COLOR  
+
+void setcolor(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(hConsole, color);
+}
 
 
-	// CONSTANT VARIABLES				// THESE ARE INSIDE OF MAIN UNTIL WE START USING OTHER FUNCTIONS
-	const int health_boss = 100;		// These variables will be used to state the known maximum health of a combatant based on its classification
-	const int health_elite = 75;		//
-	const int health_major = 50;		//
-	const int health_minor = 25;		//
-	const int health_zero = 0;			// This variable is mainly used for stating and/or conditions in if-statements involving health min- and maximums
 
-	const int action_count_boss = 4;	// These variables will be used to control loop instances and calculate range averages.
-	const int action_count_elite = 3;	//
-	const int action_count_major = 2;	//
-	const int action_count_minor = 1;	//
 
-	const double safe_distance_multiplier = 2.0;	// This variable is used to calculate the safe distance, which is 2 times the average of ranges
 
-	const string border_mega_long_thin = "------------------------------------------------------------------------------------------------------------------";
-	const string border_mega_long = "==================================================================================================================";
+
+// PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  
+// PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  
+// PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  
+
+void banner(){
 	const string border_long = "==============================================================";
-	const string border_short = "=============================";     
-
-	//*************************************************************************************************************************
-
-
-
-
-
-
-
-
+	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl; 
+	// this line creates space at the top of the console window for better formatting	
+	// this section welcomes the user to the program
+	//
+	cout << border_long << endl;
+	cout << setfill(' ') << setw(50) << right << "WELCOME TO MY ENEMY ACTION DOCUMENTOR!" << endl;
+	cout << border_long << endl;
+	cout << "\n\n" << endl;	
+};
 
 
 
 
 
 
+// GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  
+// GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  
+// GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  
+
+string get_gametype(){
+	string para_gamename;
+	// this section collects the game being played from the user
+	//
+	cout << "PLEASE PROVIDE THE NAME OF THE GAME YOU ARE PLAYING?: ";
+	getline(cin, para_gamename);
+	cout << "GAME PROVIDED: " << para_gamename << endl;
+	cout << "\n\n" << endl;
+	return para_gamename;
+};
 
 
 
 
 
 
+// GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  
+// GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  
+// GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  
 
-	//******************************************************************************************************************
-	// The section below contains the main code of the program
-	//******************************************************************************************************************
-
-
-
-
-
-
-
-	do
-	{
-		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl; 
-		// this line creates space at the top of the console window for better formatting
-
-		
-
-		// this section welcomes the user to the program
-		//
-		cout << border_long << endl;
-		cout << setfill(' ') << setw(50) << right << "WELCOME TO MY ENEMY ACTION DOCUMENTOR!" << endl;
-		cout << border_long << endl;
-		cout << "\n\n" << endl;
+string get_enemyrace(){
+	string para_enemyrace;
+	// this section collects the enemy race from the user
+	//
+	cout << "WHAT IS THE NAME OF THE RACE OF THE ENEMY YOU ENCOUNTERED?: ";
+	getline(cin, para_enemyrace); 
+	cout << "RACE PROVIDED: " << para_enemyrace << endl;
+	cout << "\n\n" << endl;
+	return para_enemyrace;
+};
 
 
 
-		// this section collects the game being played from the user
-		//
-		cout << "PLEASE PROVIDE THE NAME OF THE GAME YOU ARE PLAYING?: ";
-		getline(cin, game);
-		cout << "GAME PROVIDED: " << game << endl;
-		cout << "\n\n" << endl;
 
 
 
-		// this section collects the enemy race from the user
-		//
-		cout << "WHAT IS THE NAME OF THE RACE OF THE ENEMY YOU ENCOUNTERED?: ";
-		getline(cin, enemyrace); 
-		cout << "RACE PROVIDED: " << enemyrace << endl;
-		cout << "\n\n" << endl;
+// GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  
+// GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  
+// GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  // GET CLASSIFICATION  
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+string get_classification(){
+	string para_enemyclassification;
 
 		// THIS SECTION COLLECTS THE ENEMY CLASSIFICATION FROM THE USER AND ENSURES IT IS CORRECT USING A LOOP
 		// IT ALSO SETS THE ACTION COUNT
+
+		string end_or_continue1;
+
 		do
 		{
 			flag = true;
 			cout << "WHAT IS THE CLASSIFICATION OF THE ENEMY?  |  OPTIONS ARE: BOSS, ELITE, MAJOR, MINOR  |  : (USE CAPITAL LETTERS ONLY) :";
-			getline(cin, enemyclassification);
-			cout << "CLASSIFICATION PROVIDED: " << enemyclassification << endl;
+			getline(cin, para_enemyclassification);
+			cout << "CLASSIFICATION PROVIDED: " << para_enemyclassification << endl;
 			cout << "\n\n" << endl;
-			//
-			// this section assigns full health to the enemy based on its classification
-			//
-			if (enemyclassification == "BOSS") {
-				maximum_enemyhealth = health_boss;
-				action_count = action_count_boss;
-				health_storage_review = health_boss;
-			}
-			else if (enemyclassification == "ELITE") {
-				maximum_enemyhealth = health_elite;
-				action_count = action_count_elite;
-				health_storage_review = health_elite;
-			}
-			else if (enemyclassification == "MAJOR") {
-				maximum_enemyhealth = health_major;
-				action_count = action_count_major;
-				health_storage_review = health_major;
-			}
-			else if (enemyclassification == "MINOR") {
-				maximum_enemyhealth = health_minor;
-				action_count = action_count_minor;
-				health_storage_review = health_minor;
-			}
 			
 			// this section provides a warning message based on the enemy classification
 			//
-			if (enemyclassification == "BOSS" || enemyclassification == "ELITE") cout << "THIS IS A LARGE THREAT! CONSIDER AVOIDING IT" << endl;
-			else if (enemyclassification == "MAJOR" || enemyclassification == "MINOR") cout << "THIS ENEMY IS QUITE MANAGABLE AND NOT AS MUCH OF A THREAT" << endl;
+			if (para_enemyclassification == "BOSS" || para_enemyclassification == "ELITE") cout << "THIS IS A LARGE THREAT! CONSIDER AVOIDING IT" << endl;
+			else if (para_enemyclassification == "MAJOR" || para_enemyclassification == "MINOR") cout << "THIS ENEMY IS QUITE MANAGABLE AND NOT AS MUCH OF A THREAT" << endl;
 			
 			// this section validates the enemy classification input to ensure it is one of the 4 accepted options
 			//
-			if (enemyclassification != "BOSS" && enemyclassification != "ELITE" && enemyclassification != "MAJOR" && enemyclassification != "MINOR") {
+			if (para_enemyclassification != "BOSS" && para_enemyclassification != "ELITE" && para_enemyclassification != "MAJOR" && para_enemyclassification != "MINOR") {
 				cout << "The INPUT received does not match the requirements. \n If you would like to retry, enter any input, otherwise, type exactly \"EXIT\" to end the program." << endl;
-				getline(cin, end_or_continue);
-				if (end_or_continue == "EXIT")
-					return 0;
+				getline(cin, end_or_continue1);
+				if (end_or_continue1 == "EXIT")
+					{
+					killswitch = true;
+					break;
+					}
 				flag = false;
 			}
 		}
 		while (!flag);
 		flag = false;
 		cout << "\n\n" << endl;
+		return para_enemyclassification;
+};
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-		do
-		{
-			
-			// this section collects the observed remaining health of the enemy from the user and calculates the damage done
-			// it also validates the input to ensure only integer values within the correct range are accepted
-			//
-			cout << "THE KNOWN MAXIMUM HEALTH OF THIS ENEMY CLASSIFICATION IS: " << maximum_enemyhealth << endl;
-			cout << "When you encountered this enemy, how much health did it have?:    |  WHOLE NUMBERS ONLY FROM  0 TO " << maximum_enemyhealth << "  |" << endl;
-			
-			if (cin >> enemyremaininghealth)
-				{
-				// this section validates the remaining health input based on the enemy classification
-				//
-				if (enemyclassification == "BOSS" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_boss){
-					flag = true;
-				}
-				else if (enemyclassification == "ELITE" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_elite){
-					flag = true;
-				}
-				else if (enemyclassification == "MAJOR" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_major){
-					flag = true;
-				}
-				else if (enemyclassification == "MINOR" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_minor){
-					flag = true;
-				}
-				}
-			
-			if(!flag)
-			{
-				cout << "\n\n" << endl;
-				cout << "The INPUT received does not match the requirements. \n If you would like to retry, enter any input, otherwise, type exactly \"EXIT\" to end the program." << endl;
-				cin >> end_or_continue;
-				if (end_or_continue == "EXIT")
-					return 0;
-			}
+// GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  
+// GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  
+// GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  
 
-			cin.clear();				// THIS ALLOWS CIN TO TAKE INPUT AGAIN, REVERTING ITS FAILED STATE.
-			cin.ignore(1000, '\n');
-		}
-		while (!flag);					// END OF THE LOOP
+int observedhealth(string para_classification2, int &enemyremaininghealth){
+	
+	const int health_boss = 100;		// These variables will be used to state the known maximum health of a combatant based on its classification
+	const int health_elite = 75;		//
+	const int health_major = 50;		//
+	const int health_minor = 25;		//
+	const int health_zero = 0;	
 
-		flag = false;					// RESETS THE KILL SWITCH
+	int maximum_enemyhealth = 0;		// this variable stores the initial full health of the enemy
+	int damagedone = 0;					// this variable stores the calculated damage done to the enemy
 
-		damagedone = maximum_enemyhealth - enemyremaininghealth;
-		cout << "THE " << enemyrace << ' ' << enemyclassification << " IS MISSING: " << damagedone << " HEALTH" << endl;
-		cout << "\n\n" << endl;
+	int health_storage_review;	
 
 
+	if (para_classification2 == "BOSS") {
+		maximum_enemyhealth = health_boss;
+		health_storage_review = health_boss;
+	}
+	else if (para_classification2 == "ELITE") {
+		maximum_enemyhealth = health_elite;
+		health_storage_review = health_elite;
+	}
+	else if (para_classification2 == "MAJOR") {
+		maximum_enemyhealth = health_major;
+		health_storage_review = health_major;
+	}
+	else if (para_classification2 == "MINOR") {
+		maximum_enemyhealth = health_minor;
+		health_storage_review = health_minor;
+	}
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-		// THIS IS A REVIEW PORTION THAT WILL EITHER ALLOW THE USER TO RESTART OR CONTINUE THE PROGRAM WITHOUT EXITING
-		//
-		cout << "\n\n\n\n\n\n\n\n\n\n\n" << endl;
-		cout << "PLEASE REVIEW THE FOLLOWING INFORMATION AND DECIDE IF YOU WISH TO PROCEED." << endl;
-		cout << "GAME PROVIDED: " << game << endl;
-		cout << "RACE PROVIDED: " << enemyrace << endl;
-		cout << "CLASSIFICATION PROVIDED: " << enemyclassification << endl;
-		cout << "MAXIMUM HEALTH OF THE " << enemyclassification << ": " << health_storage_review << endl;
-		cout << "OBSERVED REMAINING HEALTH: " << enemyremaininghealth << endl;
-		cout << "\n";
+	do
+	{
 		
-		for (;;)
-		{
-			cout << "Would you like to restart, continue or exit?" << "\n" << "INPUT: - RESTART or CONTINUE or EXIT - in capitals" << endl;
-			cin >> loop_termination_confirmer_1;
-
-			if (loop_termination_confirmer_1 == "CONTINUE")
-				{
+		// this section collects the observed remaining health of the enemy from the user and calculates the damage done
+		// it also validates the input to ensure only integer values within the correct range are accepted
+		//
+		cout << "THE KNOWN MAXIMUM HEALTH OF THIS ENEMY CLASSIFICATION IS: " << maximum_enemyhealth << endl;
+		cout << "When you encountered this enemy, how much health did it have?:    |  WHOLE NUMBERS ONLY FROM  0 TO " << maximum_enemyhealth << "  |" << endl;
+		
+		if (cin >> enemyremaininghealth)
+			{
+			// this section validates the remaining health input based on the enemy classification
+			//
+			if (para_classification2 == "BOSS" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_boss){
 				flag = true;
+			}
+			else if (para_classification2 == "ELITE" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_elite){
+				flag = true;
+			}
+			else if (para_classification2 == "MAJOR" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_major){
+				flag = true;
+			}
+			else if (para_classification2 == "MINOR" && enemyremaininghealth >= health_zero && enemyremaininghealth <= health_minor){
+				flag = true;
+			}
+			}
+		
+		if(!flag)
+		{
+			cout << "\n\n" << endl;
+			cout << "The INPUT received does not match the requirements. \n If you would like to retry, enter any input, otherwise, type exactly \"EXIT\" to end the program." << endl;
+			cin >> end_or_continue;
+			if (end_or_continue == "EXIT"){
+				killswitch = true;
 				break;
-				}
-
-			else if (loop_termination_confirmer_1 == "RESTART")
-				break;
-
-			else if (loop_termination_confirmer_1 == "EXIT") return 0;
-			else cout << "ERROR - PLEASE PROVIDE A CORRECT INPUT" << "\n\n" << endl;
-
+			}
 		}
 
+		cin.clear();				// THIS ALLOWS CIN TO TAKE INPUT AGAIN, REVERTING ITS FAILED STATE.
 		cin.ignore(1000, '\n');
 	}
-	while (!flag);
-	flag = false;
-	cout << "\n\n\n\n" << endl;
-	
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	while (!flag);					// END OF THE LOOP
+	flag = false;					// RESETS THE LOOP KILL SWITCH
+	damagedone = maximum_enemyhealth - enemyremaininghealth;
+	return damagedone;
+};
 
 
 
-	// THIS SECTION WILL RUN A FOR LOOP A FIXED NUMBER OF TIMES AND COLLECT ACTIONS THE ENEMY PERFORMS
-	//
-	cout << "Please enter the Actions that you have seen the enemy perform. \n" << endl;
-	for (int i = 1; i <= action_count; i++)
-	{
-		cout << "ACTION: " << i << endl;
-		if (i == 1) getline(cin, action1); 
-		else if (i == 2) getline(cin, action2); 
-		else if (i == 3) getline(cin, action3); 
-		else if (i == 4) getline(cin, action4); 
 
-		
+
+
+// GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
+// GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
+// GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
+int get_actioncount(string para_enemyclassification){
+
+	const int action_count_boss = 4;
+	const int action_count_elite = 3;	
+	const int action_count_major = 2;	
+	const int action_count_minor = 1;
+
+	int action_count;
+	if (para_enemyclassification == "BOSS") {
+		action_count = action_count_boss;
 	}
-	cout << "\n\n" << endl;
-	cout << "\n\n" << endl;
+	else if (para_enemyclassification == "ELITE") {
+		action_count = action_count_elite;
+	}
+	else if (para_enemyclassification == "MAJOR") {
+		action_count = action_count_major;
+	}
+	else if (para_enemyclassification == "MINOR") {
+		action_count = action_count_minor;
+	}
+
+	return action_count;
+}
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+// GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  
+// GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  
+// GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  // GET ACTIONS  
+
+void get_actions(int action_count, string &action1, string &action2, string &action3, string &action4){
+
+	string confirm_actions;
+
+	while (true){
+
+		// THIS SECTION WILL RUN A FOR LOOP A FIXED NUMBER OF TIMES AND COLLECT ACTIONS THE ENEMY PERFORMS
+		//
+		cout << "Please enter the Actions that you have seen the enemy perform. \n" << endl;
+		for (int i = 1; i <= action_count; i++)
+		{
+			cout << "ACTION: " << i << endl;
+			if (i == 1) getline(cin, action1); 
+			else if (i == 2) getline(cin, action2); 
+			else if (i == 3) getline(cin, action3); 
+			else if (i == 4) getline(cin, action4); 
+
+			
+		}
+		cout << "\n\n" << endl;
+		cout << "\n\n" << endl;
+
+		cout << "Are you happy with your actions? [ Y  or  N ]" << endl;
+		cout << "Y = continue    |     N = redo" << endl;
+		getline(cin, confirm_actions);
+
+		if (confirm_actions == "Y") break;
+	}
+	
+};
+
+
+
+
+
+
+// GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  
+// GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  
+// GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  
+
+double get_ranges(string para_enemyclassification, string action1, string action2, string action3, string action4, 
+	double &range_1_m, double &range_2_m, double &range_3_m, double &range_4_m, int action_count){
+
+
+	const string border_short = "=============================";   
+	double range_value_holder;
+	double average_range_m;
+	const int action_count_boss = 4;
+	const int action_count_elite = 3;	
+	const int action_count_major = 2;	
+	const int action_count_minor = 1;
 
 	// THIS SECTION COLLECTS THE RANGES OF EACH ACTION
 	//
@@ -402,7 +395,9 @@ int main() {
 				cout << "If you would like to retry, enter any input, otherwise, type exactly \"EXIT\" to end the program." << endl;
 				cin >> end_or_continue;
 				if (end_or_continue == "EXIT")
-					return 0;
+					killswitch = true;
+					i = 10;
+					break;
                 cin.clear();
                 cin.ignore(1000, '\n'); 
             }
@@ -415,23 +410,34 @@ int main() {
 	// THIS SECTION CALCULATES THE AVERAGE
 	//
 	if (action_count == action_count_boss)
-		average_range_m = (range_1_m + range_2_m + range_3_m + range_4_m) / action_count;  // this line calculates the average range of the enemy actions	
+		average_range_m = (range_1_m + range_2_m + range_3_m + range_4_m) / action_count;
 	else if (action_count == action_count_elite)
 		average_range_m = (range_1_m + range_2_m + range_3_m) / action_count; 
 	else if (action_count == action_count_major)
 		average_range_m = (range_1_m + range_2_m) / action_count; 
 	else if (action_count == action_count_minor)
 		average_range_m = range_1_m; 
-	recommended_safe_distance_m = average_range_m * safe_distance_multiplier;        // this line calculates the recommended safe distance from the enemy
+	return average_range_m;
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+};
 
 
 
+
+
+
+// OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
+// OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
+// OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
+
+void reportfile(string game, string enemyrace, string enemyclassification, int damagedone,
+string action1, string action2, string action3, string action4, double range_1_m, double range_2_m, double range_3_m, double range_4_m, 
+double average_range_m, double recommended_safe_distance_m){
+
+	const string border_mega_long_thin = "------------------------------------------------------------------------------------------------------------------";
+	const string border_mega_long = "==================================================================================================================";
 	// this section outputs all collected and calculated data to a text file
 	// it will provide a nice summary of all the information gathered from the user and upload it to "report.txt"
 	//
@@ -461,24 +467,40 @@ int main() {
 	outdata << " " << endl;
 
 	outdata.close();  // this line closes the file after input operations are complete
+};
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+// MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  
+// MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  
+// MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  
+
+void openmenu(string game, string enemyrace, string enemyclassification, int damagedone,
+string action1, string action2, string action3, string action4, double range_1_m, double range_2_m, double range_3_m, double range_4_m, 
+double average_range_m, double recommended_safe_distance_m, int enemyremaininghealth){
+
+	int menu_choice;
 
 	/////////////////////////////////////////////////////////////////////////////////////
 
 	// MENU SELECTION - SWITCH VERSION
 	
 	/////////////////////////////////////////////////////////////////////////////////////
-	//
+	
+
+	const string border_mega_long_thin = "------------------------------------------------------------------------------------------------------------------";
+	const string border_mega_long = "==================================================================================================================";
+	const string border_long = "==============================================================";
 
 	while (true)
 		{
+
+
+			if (flag) break;
+
 			cout << " " << endl;
 			cout << border_long << endl;
 			cout << setw(39) << setfill(' ') << right << "MENU SELECTION" << endl;
@@ -565,7 +587,9 @@ int main() {
 
 				case 3:
 					cout << "YOU HAVE SELECTED TO EXIT THE PROGRAM. THANK YOU FOR USING THE ENEMY DOCUMENTOR!" << endl;
-					return 0;
+					
+					flag = true;
+					break;
 
 
 				default:
@@ -573,6 +597,151 @@ int main() {
 			}
 			
 		}
-	return 0;
 }
 
+
+
+
+
+
+
+
+
+int main() {
+
+
+	//*************************************************************************************************************************
+	// This section declares all the variables used in the main function
+	//*************************************************************************************************************************
+                           
+
+	string game;						// this variable stores the name of the game
+	string enemyrace;					// this variable stores the name of the enemy
+	string enemyclassification; 		// this variable stores the classification of the enemy	
+
+	string action1;  					// this variable stores the first action of the enemy
+	string action2;  					// this variable stores the second action of the enemy
+	string action3;  					// this variable stores the third action of the enemy
+	string action4;  
+
+
+	string loop_termination_confirmer_1;
+	
+
+	double range_1_m;             		// these variables store the ranges (in meters) of the enemy actions
+	double range_2_m;					//
+	double range_3_m;					//
+	double range_4_m;					//
+
+	double range_value_holder;			// THIS VARIABLE WILL BE USED TO TRANSFER RANGES WHILE USING A LOOP.
+	double average_range_m;				// this variable stores the calculated average range of the enemy actions
+	double recommended_safe_distance_m; // this variable stores the calculated recommended safe distance from the enemy
+
+
+	int maximum_enemyhealth = 0;		// this variable stores the initial full health of the enemy
+	int enemyremaininghealth = 0;		// this variable stores the remaining health of the enemy after being attack once
+	int damagedone = 0;					// this variable stores the calculated damage done to the enemy
+	int menu_choice;               		// this variable stores the menu choice input by the user
+	int action_count = 0;				// THIS VARIABLE STORES THE ACTION COUNT OF THE ENEMY BASED ON THE CLASSIFICATION
+
+
+	int health_storage_review;			// THIS STORES THE MAX HEALTH OF THE ENEMY BASED ON THE CLASSIFICATION. IT WILL BE USED DURING THE REVIEW
+
+	const int action_count_boss = 4;	// These variables will be used to control loop instances and calculate range averages.
+	const int action_count_elite = 3;	//
+	const int action_count_major = 2;	//
+	const int action_count_minor = 1;
+
+	const double safe_distance_multiplier = 2.0;
+	//*************************************************************************************************************************
+
+
+
+
+
+
+
+	//******************************************************************************************************************
+	// The section below contains the main code of the program
+	//******************************************************************************************************************
+
+
+
+
+
+
+
+	do
+	{
+		setcolor(12);			// changes color to red
+		banner();												// PRODUCES A BANNER IN THE TERMINAL
+		setcolor(10);			// chances color to green
+		game = get_gametype();									// GIVES GAME A VALUE
+		setcolor(9);			// changes color to blue
+		enemyrace = get_enemyrace();							// GIVES ENEMYRACE A VALUE
+		setcolor(5);			// changes color to magenta
+		enemyclassification = get_classification();				// GIVES ENEMYCLASSIFICATION A VALUE
+		if (killswitch == true) return 0;
+		setcolor(3);			// changes color to cyan
+		damagedone = observedhealth(enemyclassification, enemyremaininghealth);
+		if (killswitch == true) return 0;
+		setcolor(13);			// changes color to light magenta
+		// THIS IS A REVIEW PORTION THAT WILL EITHER ALLOW THE USER TO RESTART OR CONTINUE THE PROGRAM WITHOUT EXITING
+		//
+		cout << "\n\n\n\n\n\n\n\n\n\n\n" << endl;
+		cout << "PLEASE REVIEW THE FOLLOWING INFORMATION AND DECIDE IF YOU WISH TO PROCEED." << endl;
+		cout << "GAME PROVIDED: " << game << endl;
+		cout << "RACE PROVIDED: " << enemyrace << endl;
+		cout << "CLASSIFICATION PROVIDED: " << enemyclassification << endl;
+		cout << "MAXIMUM HEALTH OF THE " << enemyclassification << ": " << health_storage_review << endl;
+		cout << "OBSERVED REMAINING HEALTH: " << enemyremaininghealth << endl;
+		cout << "\n";
+		
+		for (;;)
+		{
+			cout << "Would you like to restart, continue or exit?" << "\n" << "INPUT: - RESTART or CONTINUE or EXIT - in capitals" << endl;
+			cin >> loop_termination_confirmer_1;
+
+			if (loop_termination_confirmer_1 == "CONTINUE")
+				{
+				flag = true;
+				break;
+				}
+
+			else if (loop_termination_confirmer_1 == "RESTART")
+				break;
+
+			else if (loop_termination_confirmer_1 == "EXIT") return 0;
+			else cout << "ERROR - PLEASE PROVIDE A CORRECT INPUT" << "\n\n" << endl;
+
+		}
+
+		cin.ignore(1000, '\n');
+	}
+	while (!flag);
+	flag = false;
+	cout << "\n\n\n\n" << endl;
+	
+	
+
+	action_count = get_actioncount(enemyclassification);			// THIS RETURNS THE ACTION COUNT BASED ON THE CLASSIFICATION CHOSEN
+
+	get_actions(action_count, action1, action2, action3, action4);  // THIS ASKS THE USER FOR ACTIONS OBSERVED BASED ON THE CLASSIFICATION
+
+	setcolor(3);			// changes color to cyan
+	// THIS FUNCTION ASKS THE USER TO PROVIDE RANGES FOR THE ACTIONS
+	average_range_m = get_ranges(enemyclassification, action1, action2, action3, action4, range_1_m, range_2_m, range_3_m, range_4_m, action_count);
+	if (killswitch == true) return 0;
+	recommended_safe_distance_m = average_range_m * safe_distance_multiplier;   
+
+	reportfile(game, enemyrace, enemyclassification, damagedone,
+	action1, action2, action3, action4, range_1_m, range_2_m, range_3_m, range_4_m, 
+	average_range_m, recommended_safe_distance_m);
+	
+	setcolor(10);			// changes color to green
+	openmenu(game, enemyrace, enemyclassification, damagedone,
+	action1, action2, action3, action4, range_1_m, range_2_m, range_3_m, range_4_m, 
+	average_range_m, recommended_safe_distance_m, enemyremaininghealth);
+
+	return 0;
+}
