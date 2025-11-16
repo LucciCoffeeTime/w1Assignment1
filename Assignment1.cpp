@@ -193,7 +193,7 @@ string get_classification(){
 // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  
 // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  // GET DAMAGEDONE  
 
-int observedhealth(string para_classification2, int &enemyremaininghealth){
+int observedhealth(string para_classification2, int &enemyremaininghealth, int &health_storage_review){
 	
 	const int health_boss = 100;		// These variables will be used to state the known maximum health of a combatant based on its classification
 	const int health_elite = 75;		//
@@ -203,8 +203,6 @@ int observedhealth(string para_classification2, int &enemyremaininghealth){
 
 	int maximum_enemyhealth = 0;		// this variable stores the initial full health of the enemy
 	int damagedone = 0;					// this variable stores the calculated damage done to the enemy
-
-	int health_storage_review;	
 
 
 	if (para_classification2 == "BOSS") {
@@ -683,7 +681,7 @@ int main() {
 		enemyclassification = get_classification();				// GIVES ENEMYCLASSIFICATION A VALUE
 		if (killswitch == true) return 0;
 		setcolor(3);			// changes color to cyan
-		damagedone = observedhealth(enemyclassification, enemyremaininghealth);
+		damagedone = observedhealth(enemyclassification, enemyremaininghealth, health_storage_review);
 		if (killswitch == true) return 0;
 		setcolor(13);			// changes color to light magenta
 		// THIS IS A REVIEW PORTION THAT WILL EITHER ALLOW THE USER TO RESTART OR CONTINUE THE PROGRAM WITHOUT EXITING
