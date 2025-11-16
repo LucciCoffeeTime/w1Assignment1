@@ -40,12 +40,6 @@
 //*************************************************************************************************************************
 
 
-
-// TACO
-// GJALLARHORN
-// GIT DEMO
-
-
 #include <iostream> // This is the library required for cout and cin
 #include <iomanip>  // This lets me use setprecision
 #include <string>   // This lets me use string variables
