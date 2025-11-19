@@ -3,7 +3,7 @@
 
 ### INFORMATION ABOUT WHAT THIS PROGRAM DOES
 
-This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a way to document information about an encountered foe. The program forces users to meet input requirements through looping. At mostly every looping point, the user can freely exit a loop and the program if desired.
+This program is a combatant documentor. Imagine a video game recently launched and a vague amount of information exists about the enemies throughout the game. This program is a way to document information about an encountered foe. The program forces users to meet input requirements through looping. At mostly every looping point, the user can freely exit a loop and the program if desired. With week 5 learnings, this program now uses functions!
 
 (STEP 1): The program will ask the user which video game they are currently playing.
 - In a larger program, this would be ideal to document multiple games and expand its usage throughout communities.
