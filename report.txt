@@ -8,16 +8,16 @@
 
 NAME OF GAME                  ENEMY RACE                    ENEMY CLASSIFICATION          HEALTH MISSING                
 ------------------------------------------------------------------------------------------------------------------
-DESTINY 2                     CABAL                         MAJOR                         10                            
+DESTINY 2                     CABAL                         BOSS                          50                            
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-FIREBALL                      FROSTBALL                                                                                 
-12.34                         12.34                         0.00                          0.00                          
+FIREBALL                      FROSTBALL                     FLYING                        LEAPING                       
+12.34                         12.34                         94.60                         14.60                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             12.34 meters   |  Recommended safe distance: 24.68 meters
+                             33.47 meters   |  Recommended safe distance: 66.94 meters
  
 ==================================================================================================================
                                    THANK YOU FOR USING THE INFORMATION PROVIDED!

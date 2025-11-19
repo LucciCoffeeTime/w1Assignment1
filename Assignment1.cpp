@@ -3,7 +3,7 @@
 
 //*************************************************************************************************************************
 //
-// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM!
+// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM! (WEEK 5 - FUNCTIONS VERSION)
 // This program collects data about an enemy encountered in a video game, makes a nice summary of all the information 
 // provided and calculated then stores it in a text file and offers a menu choice of the following 3 options:
 // 1 to view the summary, 2 to view all given inputs, and 3 to end the program.
@@ -45,16 +45,21 @@
 #include <string>   // This lets me use string variables
 #include <fstream>  // This lets me use file input and output
 #include <windows.h>
-using namespace std; // allows the user to use cout, cin, and endl without std::
 
+// GLOBAL NAMESPACE
+using namespace std; // allows the user to use cout, cin, and endl without std::
 
 // GLOBAL KILLSWITCH VARIABLES
 bool flag = false;					// THIS ONE KILLS LOOPS
 bool killswitch = false;			// THIS ONE KILLS THE PROGRAM
 string end_or_continue;				// THIS ONE ASKS THE USER IF THEY WANT TO KILL SOMETHING
 
-// GLOBAL FILE VARIABLE
-ofstream outdata;	
+
+
+
+
+
+
 
 
 
@@ -69,6 +74,11 @@ void setcolor(int color) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, color);
 }
+
+
+
+
+
 
 
 
@@ -96,6 +106,11 @@ void banner(){
 
 
 
+
+
+
+
+
 // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  
 // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  
 // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  // GET GAME TYPE  
@@ -116,6 +131,10 @@ string get_gametype(){
 
 
 
+
+
+
+
 // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  
 // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  
 // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  // GET ENEMY RACE  
@@ -130,6 +149,10 @@ string get_enemyrace(){
 	cout << "\n\n" << endl;
 	return para_enemyrace;
 };
+
+
+
+
 
 
 
@@ -179,6 +202,9 @@ string get_classification(){
 		cout << "\n\n" << endl;
 		return para_enemyclassification;
 };
+
+
+
 
 
 
@@ -270,6 +296,10 @@ int observedhealth(string para_classification2, int &enemyremaininghealth, int &
 
 
 
+
+
+
+
 // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
 // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
 // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
@@ -296,6 +326,9 @@ int get_actioncount(string para_enemyclassification){
 
 	return action_count;
 }
+
+
+
 
 
 
@@ -342,6 +375,9 @@ void get_actions(int action_count, string &action1, string &action2, string &act
 
 
 
+
+
+
 // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  
 // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  
 // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  // GET RANGES  
@@ -367,6 +403,7 @@ double get_ranges(string para_enemyclassification, string action1, string action
 	cout << border_short << border_short << endl;
 	cout << "\n\n" << endl;
 	for (int i = 1; i <= action_count; i++) {
+		if (flag) break;
         while (true) {
             if (i == 1) cout << "Range of Action 1 (" << action1 << "): ";
             else if (i == 2) cout << "Range of Action 2 (" << action2 << "): ";
@@ -388,10 +425,11 @@ double get_ranges(string para_enemyclassification, string action1, string action
                 cout << "INVALID INPUT! Please enter a decimal value.\n";
 				cout << "If you would like to retry, enter any input, otherwise, type exactly \"EXIT\" to end the program." << endl;
 				cin >> end_or_continue;
-				if (end_or_continue == "EXIT")
+				if (end_or_continue == "EXIT"){
 					killswitch = true;
-					i = 10;
+					flag = true;
 					break;
+				}
                 cin.clear();
                 cin.ignore(1000, '\n'); 
             }
@@ -422,6 +460,9 @@ double get_ranges(string para_enemyclassification, string action1, string action
 
 
 
+
+
+
 // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
 // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
 // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
@@ -429,6 +470,10 @@ double get_ranges(string para_enemyclassification, string action1, string action
 void reportfile(string game, string enemyrace, string enemyclassification, int damagedone,
 string action1, string action2, string action3, string action4, double range_1_m, double range_2_m, double range_3_m, double range_4_m, 
 double average_range_m, double recommended_safe_distance_m){
+	
+
+	ofstream outdata;	
+
 
 	const string border_mega_long_thin = "------------------------------------------------------------------------------------------------------------------";
 	const string border_mega_long = "==================================================================================================================";
@@ -462,6 +507,9 @@ double average_range_m, double recommended_safe_distance_m){
 
 	outdata.close();  // this line closes the file after input operations are complete
 };
+
+
+
 
 
 
@@ -619,7 +667,7 @@ int main() {
 	string action4;  
 
 
-	string loop_termination_confirmer_1;
+	string loop_termination_confirmer_1;	// THIS VARIABLE WILL BE USED TO CONFIRM IF THE USER WANTS TO RESTART THE INPUT PROCESS
 	
 
 	double range_1_m;             		// these variables store the ranges (in meters) of the enemy actions
@@ -644,9 +692,9 @@ int main() {
 	const int action_count_boss = 4;	// These variables will be used to control loop instances and calculate range averages.
 	const int action_count_elite = 3;	//
 	const int action_count_major = 2;	//
-	const int action_count_minor = 1;
+	const int action_count_minor = 1;	//
 
-	const double safe_distance_multiplier = 2.0;
+	const double safe_distance_multiplier = 2.0; // THIS CONSTANT MULTIPLIER WILL BE USED TO CALCULATE THE RECOMMENDED SAFE DISTANCE
 	//*************************************************************************************************************************
 
 
@@ -667,21 +715,49 @@ int main() {
 
 	do
 	{
+
+
 		setcolor(12);			// changes color to red
-		banner();												// PRODUCES A BANNER IN THE TERMINAL
+
+
+		// THIS FUNCTION PRODUCES THE WELCOME BANNER
+		banner();
+
+
 		setcolor(10);			// chances color to green
-		game = get_gametype();									// GIVES GAME A VALUE
+
+
+		// THIS FUNCTION ASKS THE USER TO PROVIDE THE NAME OF THE GAME
+		game = get_gametype();
+		
+
 		setcolor(9);			// changes color to blue
-		enemyrace = get_enemyrace();							// GIVES ENEMYRACE A VALUE
+
+
+		// THIS FUNCTION ASKS THE USER TO PROVIDE THE ENEMY RACE
+		enemyrace = get_enemyrace();
+		
+
 		setcolor(5);			// changes color to magenta
-		enemyclassification = get_classification();				// GIVES ENEMYCLASSIFICATION A VALUE
+
+
+		// THIS FUNCTION ASKS THE USER TO PROVIDE THE ENEMY CLASSIFICATION
+		enemyclassification = get_classification();	
 		if (killswitch == true) return 0;
+
+
 		setcolor(3);			// changes color to cyan
+
+
+		// THIS FUNCTION ASKS THE USER TO PROVIDE THE REMAINING HEALTH OF THE ENEMY
 		damagedone = observedhealth(enemyclassification, enemyremaininghealth, health_storage_review);
 		if (killswitch == true) return 0;
+
+
 		setcolor(13);			// changes color to light magenta
-		// THIS IS A REVIEW PORTION THAT WILL EITHER ALLOW THE USER TO RESTART OR CONTINUE THE PROGRAM WITHOUT EXITING
-		//
+
+
+		// THIS SECTION ASKS THE USER TO CONFIRM IF THE INPUTS ARE CORRECT OR IF THEY WANT TO RESTART
 		cout << "\n\n\n\n\n\n\n\n\n\n\n" << endl;
 		cout << "PLEASE REVIEW THE FOLLOWING INFORMATION AND DECIDE IF YOU WISH TO PROCEED." << endl;
 		cout << "GAME PROVIDED: " << game << endl;
@@ -717,25 +793,37 @@ int main() {
 	cout << "\n\n\n\n" << endl;
 	
 	
+	// THIS FUNCTION DETERMINES THE ACTION COUNT BASED ON THE ENEMY CLASSIFICATION
+	action_count = get_actioncount(enemyclassification);	
 
-	action_count = get_actioncount(enemyclassification);			// THIS RETURNS THE ACTION COUNT BASED ON THE CLASSIFICATION CHOSEN
 
-	get_actions(action_count, action1, action2, action3, action4);  // THIS ASKS THE USER FOR ACTIONS OBSERVED BASED ON THE CLASSIFICATION
+	// THIS FUNCTION ASKS THE USER TO PROVIDE ACTIONS OBSERVED BASED ON THE CLASSIFICATION
+	get_actions(action_count, action1, action2, action3, action4);
+
 
 	setcolor(3);			// changes color to cyan
+
+
 	// THIS FUNCTION ASKS THE USER TO PROVIDE RANGES FOR THE ACTIONS
 	average_range_m = get_ranges(enemyclassification, action1, action2, action3, action4, range_1_m, range_2_m, range_3_m, range_4_m, action_count);
 	if (killswitch == true) return 0;
-	recommended_safe_distance_m = average_range_m * safe_distance_multiplier;   
+	recommended_safe_distance_m = average_range_m * safe_distance_multiplier;   // THIS CALCULATES THE RECOMMENDED SAFE DISTANCE
 
+
+	// THIS FUNCTION OUTPUTS THE REPORT FILE
 	reportfile(game, enemyrace, enemyclassification, damagedone,
 	action1, action2, action3, action4, range_1_m, range_2_m, range_3_m, range_4_m, 
 	average_range_m, recommended_safe_distance_m);
 	
+
 	setcolor(10);			// changes color to green
+
+
+	// THIS FUNCTION OPENS THE MENU SELECTION
 	openmenu(game, enemyrace, enemyclassification, damagedone,
 	action1, action2, action3, action4, range_1_m, range_2_m, range_3_m, range_4_m, 
 	average_range_m, recommended_safe_distance_m, enemyremaininghealth);
+
 
 	return 0;
 }
