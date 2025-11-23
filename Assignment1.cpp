@@ -3,7 +3,7 @@
 
 //*************************************************************************************************************************
 //
-// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM! (WEEK 5 - FUNCTIONS VERSION)
+// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM! (WEEK 6 - ENUM / ARRAY VERSION)
 // This program collects data about an enemy encountered in a video game, makes a nice summary of all the information 
 // provided and calculated then stores it in a text file and offers a menu choice of the following 3 options:
 // 1 to view the summary, 2 to view all given inputs, and 3 to end the program.
