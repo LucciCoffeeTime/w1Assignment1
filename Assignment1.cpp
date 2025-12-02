@@ -54,7 +54,29 @@ bool flag = false;					// THIS ONE KILLS LOOPS
 bool killswitch = false;			// THIS ONE KILLS THE PROGRAM
 string end_or_continue;				// THIS ONE ASKS THE USER IF THEY WANT TO KILL SOMETHING
 
+struct Combatant
+	{
+		string Game = "";						// this variable stores the name of the game
+		string Race = "";					// this variable stores the name of the enemy
+		string Classification = ""; 		// this variable stores the classification of the enemy	
+		string Weakness = "";			// The Observed or known weakness of this combatant
+		string Nature = "";
+		string Maturity = "";
 
+		int MaximumHealth = 0;
+		int ObservedHealth = 0;		// this variable stores the observed health of the enemy
+		int ActionCount = 0;
+		int DamageDone = 0;
+
+		double Height = 0.0;
+		double AverageRange = 0.0;				// this variable stores the calculated average range of the enemy actions
+		double Recommended_Safe_Distance = 0.0; // this variable stores the calculated recommended safe distance from the enemy
+
+		string ActionNameValues[4] = { "None", "None", "None", "None" };			// THIS ARRAY WILL STORE THE ACTION NAMES BASED ON THE CLASSIFICATION
+		double ActionRangeValues[4] = { 0.0 , 0.0 , 0.0 , 0.0 };		// THIS ARRAY WILL STORE THE ACTION RANGES BASED ON THE CLASSIFICATION
+
+		
+	};
 
 
 
@@ -125,8 +147,6 @@ string get_gametype(){
 	cout << "\n\n" << endl;
 	return para_gamename;
 };
-
-
 
 
 
@@ -327,6 +347,63 @@ int observedhealth(string para_classification2, int &enemyremaininghealth, int &
 
 
 
+
+string get_weakness(){
+
+	string EnemyWeakness;
+	cout << "What is the weakness of this enemy?: " << endl;
+	cout << "Weakness: ";
+	getline(cin, EnemyWeakness);
+	cout << endl;
+	return EnemyWeakness;
+}
+
+string get_Nature(){
+
+	string EnemyNature;
+	cout << "What is the Nature of this enemy?" << endl;
+	cout << "(Example: Aggressive, Passive, Cautious..)" << endl;
+	cout << "Nature: ";
+	getline(cin, EnemyNature);
+	cout << endl;
+	return EnemyNature;
+
+}
+
+string get_Maturity(){
+
+	string EnemyMaturity;
+	cout << "What is the Maturity of this enemy?" << endl;
+	cout << "(Example: Child, Adult, Elder, Ancient)" << endl;
+	cout << "Maturity: ";
+	getline(cin, EnemyMaturity);
+	cout << endl;
+	return EnemyMaturity;
+}
+
+double get_Height(){
+	
+	double EnemyHeight;
+	while (true)
+	{
+		cout << "What is the Height of this enemy? (Provide either an integer or decimal value)" << endl;
+		cout << "Height: ";
+		
+
+		if (cin >> EnemyHeight) {
+			break;
+		}
+		else {
+			cin.clear();
+			cin.ignore(1000, '\n');
+			cout << "Wrong Input. Please Provide a proper Heigh in numeric terms (integer or decimal values)" << endl;
+		};
+	}
+	cout << endl;
+	return EnemyHeight;
+}
+
+
 // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
 // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
 // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT  // GET ACTION COUNT
@@ -480,12 +557,11 @@ double get_ranges(string para_enemyclassification, string (&ActionNameValues)[4]
 // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
 // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  // OUTPUT REPORTFILE  
 
-void reportfile(string game, string enemyrace, string enemyclassification, int damagedone,
-string ActionNameValues[4], double ActionRangeValues[4], double average_range_m, double recommended_safe_distance_m){
+void reportfile(Combatant Enemy[10], int CombatantCount){
 	
 
 	ofstream outdata;	
-
+	
 
 	const string border_mega_long_thin = "------------------------------------------------------------------------------------------------------------------";
 	const string border_mega_long = "==================================================================================================================";
@@ -494,23 +570,31 @@ string ActionNameValues[4], double ActionRangeValues[4], double average_range_m,
 	//
 	outdata.open("report.txt");  // this line opens the file for input operations
 
-	outdata << "\n\n" << endl;
-	outdata << border_mega_long << endl;
-	outdata << setw(76) << "SUMMARY OF THE ENEMY DOCUMENTATION: " << endl;
-	outdata << border_mega_long << endl;
-	outdata << endl << endl;
-	outdata << left << setw(30) << "NAME OF GAME" << setw(30) << "ENEMY RACE" << setw(30) << "ENEMY CLASSIFICATION" << setw(30) << "HEALTH MISSING" << endl;
-	outdata << border_mega_long_thin << endl;
-	outdata << left << setw(30) << game << setw(30) << enemyrace << setw(30) << enemyclassification << setw(30) << damagedone << endl;
-	outdata << endl << endl;
-	outdata << left << setw(30) << "ACTION 1 + Distance" << setw(30) << "ACTION 2 + Distance" << setw(30) << "ACTION 3 + Distance" << setw(30) << "ACTION 4 + Distance" << endl;
-	outdata << border_mega_long_thin << endl;
-	outdata << left << setw(30) << ActionNameValues[0] << setw(30) << ActionNameValues[1] << setw(30) << ActionNameValues[2] << setw(30) << ActionNameValues[3] << endl;
-	outdata << left << setprecision(2) << fixed << setw(30) << ActionRangeValues[0] << setw(30) << ActionRangeValues[1] << setw(30) << ActionRangeValues[2] << setw(30) << ActionRangeValues[3] << endl;
-	outdata << endl;
-	outdata << right << setw(75) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
-	outdata << setprecision(2) << fixed << right << setw(34) << average_range_m << " meters " << "  |  " << "Recommended safe distance: " << recommended_safe_distance_m << " meters" << endl;
-	outdata << " " << endl;
+	for (int J = 0; J < CombatantCount; J++)
+	{
+		outdata << "\n\n" << endl;
+		outdata << border_mega_long << endl;
+		outdata << setw(76) << "SUMMARY OF THE ENEMY #" << J + 1 << endl;
+		outdata << border_mega_long << endl;
+		outdata << endl << endl;
+		outdata << left << setw(30) << "GAME" << setw(30) << "RACE" << setw(30) << "CLASSIFICATION" << setw(30) << "HEALTH MISSING" << endl;
+		outdata << border_mega_long_thin << endl;
+		outdata << left << setw(30) << Enemy[J].Game << setw(30) << Enemy[J].Race << setw(30) << Enemy[J].Classification << setw(30) << Enemy[J].DamageDone << endl;
+		outdata << endl << endl;
+		outdata << left << setw(30) << "WEAKNESS" << setw(30) << "NATURE" << setw(30) << "MATURITY" << setw(30) << "HEIGHT" << endl;
+		outdata << border_mega_long_thin << endl;
+		outdata << left << setw(30) << Enemy[J].Weakness << setw(30) << Enemy[J].Nature << setw(30) << Enemy[J].Maturity << setw(30) << Enemy[J].Height << endl;
+		outdata << endl << endl;
+		outdata << left << setw(30) << "ACTION 1 + Distance" << setw(30) << "ACTION 2 + Distance" << setw(30) << "ACTION 3 + Distance" << setw(30) << "ACTION 4 + Distance" << endl;
+		outdata << border_mega_long_thin << endl;
+		outdata << left << setw(30) << Enemy[J].ActionNameValues[0] << setw(30) << Enemy[J].ActionNameValues[1] << setw(30) << Enemy[J].ActionNameValues[2] << setw(30) << Enemy[J].ActionNameValues[3] << endl;
+		outdata << left << setprecision(2) << fixed << setw(30) << Enemy[J].ActionRangeValues[0] << setw(30) << Enemy[J].ActionRangeValues[1] << setw(30) << Enemy[J].ActionRangeValues[2] << setw(30) << Enemy[J].ActionRangeValues[3] << endl;
+		outdata << endl;
+		outdata << right << setw(75) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
+		outdata << setprecision(2) << fixed << right << setw(34) << Enemy[J].AverageRange << " meters " << "  |  " << "Recommended safe distance: " << Enemy[J].Recommended_Safe_Distance << " meters" << endl;
+		outdata << " " << endl;
+	}
+
 	outdata << border_mega_long << endl;
 	outdata << right << setw(80) << "THANK YOU FOR USING THE INFORMATION PROVIDED!" << endl;
 	outdata << right << setw(88) << "it will be documented immediately for future players to use!" << endl;
@@ -532,8 +616,7 @@ string ActionNameValues[4], double ActionRangeValues[4], double average_range_m,
 // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  
 // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  // MENU - SELECTION  
 
-void openmenu(string game, string enemyrace, string enemyclassification, int damagedone,
-string ActionNameValues[4], double ActionRangeValues[4], double average_range_m, double recommended_safe_distance_m, int enemyremaininghealth){
+void openmenu(Combatant Enemy[10], int CombatantCount){
 
 	int menu_choice;
 
@@ -590,25 +673,33 @@ string ActionNameValues[4], double ActionRangeValues[4], double average_range_m,
 					// this section outputs all collected and calculated data to the console
 					// it will provide a nice summary of all the information gathered from the user and display it in the temrinal window
 					//
-					cout << "\n\n" << endl;
+					for (int J = 0; J < CombatantCount; J++)
+					{
+						cout << "\n\n" << endl;
+						cout << border_mega_long << endl;
+						cout << setw(76) << "SUMMARY OF THE ENEMY #" << J + 1 << endl;
+						cout << border_mega_long << endl;
+						cout << endl << endl;
+						cout << left << setw(30) << "GAME" << setw(30) << "RACE" << setw(30) << "CLASSIFICATION" << setw(30) << "HEALTH MISSING" << endl;
+						cout << border_mega_long_thin << endl;
+						cout << left << setw(30) << Enemy[J].Game << setw(30) << Enemy[J].Race << setw(30) << Enemy[J].Classification << setw(30) << Enemy[J].DamageDone << endl;
+						cout << endl << endl;
+						cout << left << setw(30) << "WEAKNESS" << setw(30) << "NATURE" << setw(30) << "MATURITY" << setw(30) << "HEIGHT" << endl;
+						cout << border_mega_long_thin << endl;
+						cout << left << setw(30) << Enemy[J].Weakness << setw(30) << Enemy[J].Nature << setw(30) << Enemy[J].Maturity << setw(30) << Enemy[J].Height << endl;
+						cout << endl << endl;
+						cout << left << setw(30) << "ACTION 1 + Distance" << setw(30) << "ACTION 2 + Distance" << setw(30) << "ACTION 3 + Distance" << setw(30) << "ACTION 4 + Distance" << endl;
+						cout << border_mega_long_thin << endl;
+						cout << left << setw(30) << Enemy[J].ActionNameValues[0] << setw(30) << Enemy[J].ActionNameValues[1] << setw(30) << Enemy[J].ActionNameValues[2] << setw(30) << Enemy[J].ActionNameValues[3] << endl;
+						cout << left << setprecision(2) << fixed << setw(30) << Enemy[J].ActionRangeValues[0] << setw(30) << Enemy[J].ActionRangeValues[1] << setw(30) << Enemy[J].ActionRangeValues[2] << setw(30) << Enemy[J].ActionRangeValues[3] << endl;
+						cout << endl;
+						cout << right << setw(75) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
+						cout << setprecision(2) << fixed << right << setw(34) << Enemy[J].AverageRange << " meters " << "  |  " << "Recommended safe distance: " << Enemy[J].Recommended_Safe_Distance << " meters" << endl;
+						cout << " " << endl;
+					};
+
 					cout << border_mega_long << endl;
-					cout << setw(76) << "SUMMARY OF THE ENEMY DOCUMENTATION: " << endl;
-					cout << border_mega_long << endl;
-					cout << endl << endl;
-					cout << left << setw(30) << "NAME OF GAME" << setw(30) << "ENEMY RACE" << setw(30) << "ENEMY CLASSIFICATION" << setw(30) << "HEALTH MISSING" << endl;
-					cout << border_mega_long_thin << endl;
-					cout << left << setw(30) << game << setw(30) << enemyrace << setw(30) << enemyclassification << setw(30) << damagedone << endl;
-					cout << endl << endl;
-					cout << left << setw(30) << "ACTION 1 + Distance" << setw(30) << "ACTION 2 + Distance" << setw(30) << "ACTION 3 + Distance" << setw(30) << "ACTION 4 + Distance" << endl;
-					cout << border_mega_long_thin << endl;
-					cout << left << setw(30) << ActionNameValues[0] << setw(30) << ActionNameValues[1] << setw(30) << ActionNameValues[2] << setw(30) << ActionNameValues[3] << endl;
-					cout << left << setw(30) << setprecision(2) << fixed << ActionRangeValues[0] << setw(30) << ActionRangeValues[1] << setw(30) << ActionRangeValues[2] << setw(30) << ActionRangeValues[3] << endl;
-					cout << endl;
-					cout << right << setw(74) << "AVERAGE RANGE OF ACTIONS (IN METERS)" << endl;
-					cout << right << setw(30) << setprecision(2) << fixed << average_range_m << " meters " << "  |  " << "Recommended safe distance: " << recommended_safe_distance_m << " meters" << endl;
-					cout << " " << endl;
-					cout << border_mega_long << endl;
-					cout << right << setw(80) << "THANK YOU FOR THE INFORMATION PROVIDED!" << endl;
+					cout << right << setw(80) << "THANK YOU FOR USING THE INFORMATION PROVIDED!" << endl;
 					cout << right << setw(88) << "it will be documented immediately for future players to use!" << endl;
 					cout << border_mega_long << endl;
 					cout << " " << endl;
@@ -621,21 +712,25 @@ string ActionNameValues[4], double ActionRangeValues[4], double average_range_m,
 
 				case REVIEW_INPUTS:
 					cout << "YOU HAVE SELECTED TO REVIEW YOUR INPUT CHOICES" << endl;
-					cout << " " << endl;
-					cout << "GAME PROVIDED: " << game << endl;
-					cout << "RACE PROVIDED: " << enemyrace << endl;
-					cout << "CLASSIFICATION PROVIDED: " << enemyclassification << endl;
-					cout << "OBSERVED REMAINING HEALTH: " << enemyremaininghealth << endl;
-					cout << "OBSERVED ACTION 1: " << ActionNameValues[0] << endl;
-					cout << "OBSERVED ACTION 2: " << ActionNameValues[1] << endl;
-					cout << "OBSERVED ACTION 3: " << ActionNameValues[2] << endl;
-					cout << "OBSERVED ACTION 4: " << ActionNameValues[3] << endl;
-					cout << "RANGE OF ACTION 1: " << ActionRangeValues[0] << " meters" << endl;
-					cout << "RANGE OF ACTION 2: " << ActionRangeValues[1] << " meters" << endl;
-					cout << "RANGE OF ACTION 3: " << ActionRangeValues[2] << " meters" << endl;
-					cout << "RANGE OF ACTION 4: " << ActionRangeValues[3] << " meters" << endl;
-					cout << " " << endl;
 
+					for (int J = 0; J < CombatantCount; J++)
+					{	
+						cout << "ENEMY #" << J+1 << endl;
+						cout << " " << endl;
+						cout << "GAME PROVIDED: " << Enemy[J].Game << endl;
+						cout << "RACE PROVIDED: " << Enemy[J].Race << endl;
+						cout << "CLASSIFICATION PROVIDED: " << Enemy[J].Classification << endl;
+						cout << "OBSERVED REMAINING HEALTH: " << Enemy[J].ObservedHealth << endl;
+						cout << "OBSERVED ACTION 1: " << Enemy[J].ActionNameValues[0] << endl;
+						cout << "OBSERVED ACTION 2: " << Enemy[J].ActionNameValues[1] << endl;
+						cout << "OBSERVED ACTION 3: " << Enemy[J].ActionNameValues[2] << endl;
+						cout << "OBSERVED ACTION 4: " << Enemy[J].ActionNameValues[3] << endl;
+						cout << "RANGE OF ACTION 1: " << Enemy[J].ActionRangeValues[0] << " meters" << endl;
+						cout << "RANGE OF ACTION 2: " << Enemy[J].ActionRangeValues[1] << " meters" << endl;
+						cout << "RANGE OF ACTION 3: " << Enemy[J].ActionRangeValues[2] << " meters" << endl;
+						cout << "RANGE OF ACTION 4: " << Enemy[J].ActionRangeValues[3] << " meters" << endl;
+						cout << " " << endl;
+					}
 					cout << "Type anything in the terminal to continue: " << endl;
 					cin >> end_or_continue;
 
@@ -666,57 +761,45 @@ string ActionNameValues[4], double ActionRangeValues[4], double average_range_m,
 
 int main() {
 
+	int CombatantCount = 0;
+
+	while (true){
+
+	
+		cout << "THIS PROGRAM GIVES YOU THE CHOICE TO DETERMINE THE AMOUNT OF ENEMIES YOU WISH TO DOCUMENT (UP TO 10)." << endl;
+		cout << "CHOOSE AN INTEGER AMOUNT. (THE LARGER THE NUMBER, THE LONGER THE PROGRAM TAKES TO FINISH) " << endl;
+
+		if (cin >> CombatantCount && CombatantCount >= 0 && CombatantCount <= 10)
+			break;
+		else{
+			cout << "Choose a proper amount" << endl;
+			cin.clear();
+			cin.ignore(1000, '\n');
+		}
+
+	};
+
+
 
 	//*************************************************************************************************************************
 	// This section declares all the variables used in the main function
 	//*************************************************************************************************************************
-                           
-
-	string game;						// this variable stores the name of the game
-	string enemyrace;					// this variable stores the name of the enemy
-	string enemyclassification; 		// this variable stores the classification of the enemy	
-
-	string action1;  					// this variable stores the first action of the enemy
-	string action2;  					// this variable stores the second action of the enemy
-	string action3;  					// this variable stores the third action of the enemy
-	string action4;  
-
 
 	string loop_termination_confirmer_1;	// THIS VARIABLE WILL BE USED TO CONFIRM IF THE USER WANTS TO RESTART THE INPUT PROCESS
-	
-
-	double range_1_m;             		// these variables store the ranges (in meters) of the enemy actions
-	double range_2_m;					//
-	double range_3_m;					//
-	double range_4_m;					//
-
-	double range_value_holder;			// THIS VARIABLE WILL BE USED TO TRANSFER RANGES WHILE USING A LOOP.
-	double average_range_m;				// this variable stores the calculated average range of the enemy actions
-	double recommended_safe_distance_m; // this variable stores the calculated recommended safe distance from the enemy
 
 
 	int maximum_enemyhealth = 0;		// this variable stores the initial full health of the enemy
 	int enemyremaininghealth = 0;		// this variable stores the remaining health of the enemy after being attack once
 	int damagedone = 0;					// this variable stores the calculated damage done to the enemy
-	int menu_choice;               		// this variable stores the menu choice input by the user
 	int action_count = 0;				// THIS VARIABLE STORES THE ACTION COUNT OF THE ENEMY BASED ON THE CLASSIFICATION
 
 
 	int health_storage_review;			// THIS STORES THE MAX HEALTH OF THE ENEMY BASED ON THE CLASSIFICATION. IT WILL BE USED DURING THE REVIEW
 
-	const int action_count_boss = 4;	// These variables will be used to control loop instances and calculate range averages.
-	const int action_count_elite = 3;	//
-	const int action_count_major = 2;	//
-	const int action_count_minor = 1;	//
-
 	const double safe_distance_multiplier = 2.0; // THIS CONSTANT MULTIPLIER WILL BE USED TO CALCULATE THE RECOMMENDED SAFE DISTANCE
 
-	string ActionNameValues[4] = { "None", "None", "None", "None" };			// THIS ARRAY WILL STORE THE ACTION NAMES BASED ON THE CLASSIFICATION
-	double ActionRangeValues[4] = { 0.0 , 0.0 , 0.0 , 0.0 };		// THIS ARRAY WILL STORE THE ACTION RANGES BASED ON THE CLASSIFICATION
-	
+	Combatant Enemy[10];
 	//*************************************************************************************************************************
-
-
 
 
 
@@ -730,116 +813,138 @@ int main() {
 
 
 
-	
 
-
-	do
+	for (int J = 0; J < CombatantCount; J++)
 	{
+		cin.clear();
+		cin.ignore(1000, '\n');
+
+		do
+		{
 
 
-		setcolor(12);			// changes color to red
+			setcolor(12);			// changes color to red
 
 
-		// THIS FUNCTION PRODUCES THE WELCOME BANNER
-		banner();
+			// THIS FUNCTION PRODUCES THE WELCOME BANNER
+			banner();
 
 
-		setcolor(10);			// chances color to green
+			setcolor(10);			// chances color to green
 
 
-		// THIS FUNCTION ASKS THE USER TO PROVIDE THE NAME OF THE GAME
-		game = get_gametype();
+			// THIS FUNCTION ASKS THE USER TO PROVIDE THE NAME OF THE GAME
+			Enemy[J].Game = get_gametype();
+			
+
+			setcolor(9);			// changes color to blue
+
+
+			// THIS FUNCTION ASKS THE USER TO PROVIDE THE ENEMY RACE
+			Enemy[J].Race = get_enemyrace();
+			
+
+			setcolor(5);			// changes color to magenta
+
+
+			// THIS FUNCTION ASKS THE USER TO PROVIDE THE ENEMY CLASSIFICATION
+			Enemy[J].Classification = get_classification();	
+			if (killswitch == true) return 0;
+
+			setcolor(3);			// changes color to cyan
+
+
+			// THIS FUNCTION ASKS THE USER TO PROVIDE THE REMAINING HEALTH OF THE ENEMY
+			Enemy[J].DamageDone = observedhealth(Enemy[J].Classification, Enemy[J].ObservedHealth, Enemy[J].MaximumHealth);
+			if (killswitch == true) return 0;
+
+
+			setcolor(13);			// changes color to light magenta
+			cout << endl;
+			Enemy[J].Weakness = get_weakness();
+
+			setcolor(5);
+
+			Enemy[J].Nature = get_Nature();
+			
+			setcolor(3);
+
+			Enemy[J].Maturity = get_Maturity();
+
+			setcolor(9);
+
+			Enemy[J].Height = get_Height();
+
+			setcolor(10);
+
+			// THIS SECTION ASKS THE USER TO CONFIRM IF THE INPUTS ARE CORRECT OR IF THEY WANT TO RESTART
+			cout << "\n\n\n\n\n\n\n\n\n\n\n" << endl;
+			cout << "PLEASE REVIEW THE FOLLOWING INFORMATION AND DECIDE IF YOU WISH TO PROCEED." << endl;
+			cout << "GAME PROVIDED: " << Enemy[J].Game << endl;
+			cout << "RACE PROVIDED: " << Enemy[J].Race << endl;
+			cout << "CLASSIFICATION PROVIDED: " << Enemy[J].Classification << endl;
+			cout << "MAXIMUM HEALTH OF THE " << Enemy[J].Classification << ": " << Enemy[J].MaximumHealth << endl;
+			cout << "WEAKNESS PROVIDED: " << Enemy[J].Weakness << endl;
+			cout << "NATURE PROVIDED: " << Enemy[J].Nature << endl;
+			cout << "MATURITY PROVIDED: " << Enemy[J].Maturity << endl;
+			cout << "HEIGHT PROVIDED: " << Enemy[J].Height << " ft." << endl;
+			cout << "OBSERVED REMAINING HEALTH: " << Enemy[J].ObservedHealth << endl;
+			cout << "\n";
+			
+			for (;;)
+			{
+				cout << "Would you like to restart, continue or exit?" << "\n" << "INPUT: - RESTART or CONTINUE or EXIT - in capitals" << endl;
+				cin >> loop_termination_confirmer_1;
+
+				if (loop_termination_confirmer_1 == "CONTINUE")
+					{
+					flag = true;
+					break;
+					}
+
+				else if (loop_termination_confirmer_1 == "RESTART")
+					break;
+
+				else if (loop_termination_confirmer_1 == "EXIT") return 0;
+				else cout << "ERROR - PLEASE PROVIDE A CORRECT INPUT" << "\n\n" << endl;
+
+			}
+
+			cin.ignore(1000, '\n');
+		}
+		while (!flag);
+
+		flag = false;
+		cout << "\n\n\n\n" << endl;
 		
-
-		setcolor(9);			// changes color to blue
-
-
-		// THIS FUNCTION ASKS THE USER TO PROVIDE THE ENEMY RACE
-		enemyrace = get_enemyrace();
 		
+		// THIS FUNCTION DETERMINES THE ACTION COUNT BASED ON THE ENEMY CLASSIFICATION
+		Enemy[J].ActionCount = get_actioncount(Enemy[J].Classification);	
 
-		setcolor(5);			// changes color to magenta
+		
+		// THIS FUNCTION ASKS THE USER TO PROVIDE ACTIONS OBSERVED BASED ON THE CLASSIFICATION
+		get_actions(Enemy[J].ActionCount, Enemy[J].ActionNameValues);
 
-
-		// THIS FUNCTION ASKS THE USER TO PROVIDE THE ENEMY CLASSIFICATION
-		enemyclassification = get_classification();	
-		if (killswitch == true) return 0;
 
 		setcolor(3);			// changes color to cyan
 
 
-		// THIS FUNCTION ASKS THE USER TO PROVIDE THE REMAINING HEALTH OF THE ENEMY
-		damagedone = observedhealth(enemyclassification, enemyremaininghealth, health_storage_review);
+		// THIS FUNCTION ASKS THE USER TO PROVIDE RANGES FOR THE ACTIONS
+		Enemy[J].AverageRange = get_ranges(Enemy[J].Classification, Enemy[J].ActionNameValues, Enemy[J].ActionRangeValues, Enemy[J].ActionCount);
 		if (killswitch == true) return 0;
+		Enemy[J].Recommended_Safe_Distance = Enemy[J].AverageRange * safe_distance_multiplier;   // THIS CALCULATES THE RECOMMENDED SAFE DISTANCE
 
-
-		setcolor(13);			// changes color to light magenta
-
-
-		// THIS SECTION ASKS THE USER TO CONFIRM IF THE INPUTS ARE CORRECT OR IF THEY WANT TO RESTART
-		cout << "\n\n\n\n\n\n\n\n\n\n\n" << endl;
-		cout << "PLEASE REVIEW THE FOLLOWING INFORMATION AND DECIDE IF YOU WISH TO PROCEED." << endl;
-		cout << "GAME PROVIDED: " << game << endl;
-		cout << "RACE PROVIDED: " << enemyrace << endl;
-		cout << "CLASSIFICATION PROVIDED: " << enemyclassification << endl;
-		cout << "MAXIMUM HEALTH OF THE " << enemyclassification << ": " << health_storage_review << endl;
-		cout << "OBSERVED REMAINING HEALTH: " << enemyremaininghealth << endl;
-		cout << "\n";
-		
-		for (;;)
-		{
-			cout << "Would you like to restart, continue or exit?" << "\n" << "INPUT: - RESTART or CONTINUE or EXIT - in capitals" << endl;
-			cin >> loop_termination_confirmer_1;
-
-			if (loop_termination_confirmer_1 == "CONTINUE")
-				{
-				flag = true;
-				break;
-				}
-
-			else if (loop_termination_confirmer_1 == "RESTART")
-				break;
-
-			else if (loop_termination_confirmer_1 == "EXIT") return 0;
-			else cout << "ERROR - PLEASE PROVIDE A CORRECT INPUT" << "\n\n" << endl;
-
-		}
-
-		cin.ignore(1000, '\n');
-	}
-	while (!flag);
-	flag = false;
-	cout << "\n\n\n\n" << endl;
-	
-	
-	// THIS FUNCTION DETERMINES THE ACTION COUNT BASED ON THE ENEMY CLASSIFICATION
-	action_count = get_actioncount(enemyclassification);	
-
-	
-	// THIS FUNCTION ASKS THE USER TO PROVIDE ACTIONS OBSERVED BASED ON THE CLASSIFICATION
-	get_actions(action_count, ActionNameValues);
-
-
-	setcolor(3);			// changes color to cyan
-
-
-	// THIS FUNCTION ASKS THE USER TO PROVIDE RANGES FOR THE ACTIONS
-	average_range_m = get_ranges(enemyclassification, ActionNameValues, ActionRangeValues, action_count);
-	if (killswitch == true) return 0;
-	recommended_safe_distance_m = average_range_m * safe_distance_multiplier;   // THIS CALCULATES THE RECOMMENDED SAFE DISTANCE
-
+	};
 
 	// THIS FUNCTION OUTPUTS THE REPORT FILE
-	reportfile(game, enemyrace, enemyclassification, damagedone,
-	ActionNameValues, ActionRangeValues, average_range_m, recommended_safe_distance_m);
+	reportfile(Enemy, CombatantCount);
 	
 
 	setcolor(10);			// changes color to green
 
 
 	// THIS FUNCTION OPENS THE MENU SELECTION
-	openmenu(game, enemyrace, enemyclassification, damagedone,
-	ActionNameValues, ActionRangeValues, average_range_m, recommended_safe_distance_m, enemyremaininghealth);
+	openmenu(Enemy, CombatantCount);
 
 
 	return 0;

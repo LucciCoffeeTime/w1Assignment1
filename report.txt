@@ -2,22 +2,58 @@
 
 
 ==================================================================================================================
-                                        SUMMARY OF THE ENEMY DOCUMENTATION: 
+                                                      SUMMARY OF THE ENEMY #1
 ==================================================================================================================
 
 
-NAME OF GAME                  ENEMY RACE                    ENEMY CLASSIFICATION          HEALTH MISSING                
+GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
 ------------------------------------------------------------------------------------------------------------------
-DESTINY 2                     CABAL                         MAJOR                         25                            
+DESTINY 2                     CABAL                         BOSS                          50                            
+
+
+WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
+------------------------------------------------------------------------------------------------------------------
+FIRE                          Aggressive                    ANCIENT                       12.4                          
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-FIREBALL                      FROSTBALL                     None                          None                          
-12.34                         12.34                         0.00                          0.00                          
+FIREBALL                      FROSTBALL                     FLY                           LEAPING                       
+12.34                         12.34                         96.40                         16.40                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             12.34 meters   |  Recommended safe distance: 24.68 meters
+                             34.37 meters   |  Recommended safe distance: 68.74 meters
+ 
+==================================================================================================================
+                                   THANK YOU FOR USING THE INFORMATION PROVIDED!
+                            it will be documented immediately for future players to use!
+==================================================================================================================
+ 
+
+
+
+==================================================================================================================
+                                                      SUMMARY OF THE ENEMY #2
+==================================================================================================================
+
+
+GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
+------------------------------------------------------------------------------------------------------------------
+DESTINY 2                     FALLEN                        MAJOR                         25                            
+
+
+WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
+------------------------------------------------------------------------------------------------------------------
+WATER                         Passive                       Adult                         4.20                          
+
+
+ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
+------------------------------------------------------------------------------------------------------------------
+GUNFIRE                       SHOCKNADE                     None                          None                          
+100.00                        15.00                         0.00                          0.00                          
+
+                                       AVERAGE RANGE OF ACTIONS (IN METERS)
+                             57.50 meters   |  Recommended safe distance: 115.00 meters
  
 ==================================================================================================================
                                    THANK YOU FOR USING THE INFORMATION PROVIDED!
