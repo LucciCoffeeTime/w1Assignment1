@@ -766,10 +766,10 @@ int main() {
 	while (true){
 
 	
-		cout << "THIS PROGRAM GIVES YOU THE CHOICE TO DETERMINE THE AMOUNT OF ENEMIES YOU WISH TO DOCUMENT (UP TO 10)." << endl;
+		cout << "THIS PROGRAM GIVES YOU THE CHOICE TO DETERMINE THE AMOUNT OF ENEMIES YOU WISH TO DOCUMENT (1 REQUIRED | UP TO 10)." << endl;
 		cout << "CHOOSE AN INTEGER AMOUNT. (THE LARGER THE NUMBER, THE LONGER THE PROGRAM TAKES TO FINISH) " << endl;
 
-		if (cin >> CombatantCount && CombatantCount >= 0 && CombatantCount <= 10)
+		if (cin >> CombatantCount && CombatantCount > 0 && CombatantCount <= 10)
 			break;
 		else{
 			cout << "Choose a proper amount" << endl;
@@ -896,6 +896,9 @@ int main() {
 				cout << "Would you like to restart, continue or exit?" << "\n" << "INPUT: - RESTART or CONTINUE or EXIT - in capitals" << endl;
 				cin >> loop_termination_confirmer_1;
 
+				cin.clear();
+				cin.ignore(1000, '\n');
+
 				if (loop_termination_confirmer_1 == "CONTINUE")
 					{
 					flag = true;
@@ -907,7 +910,7 @@ int main() {
 
 				else if (loop_termination_confirmer_1 == "EXIT") return 0;
 				else cout << "ERROR - PLEASE PROVIDE A CORRECT INPUT" << "\n\n" << endl;
-
+				
 			}
 
 			cin.ignore(1000, '\n');
