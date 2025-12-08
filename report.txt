@@ -13,21 +13,16 @@ DESTINY 2                     CABAL                         BOSS                
 
 WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
 ------------------------------------------------------------------------------------------------------------------
-FIRE                          Aggressive                    ANCIENT                       12.4                          
+FIRE                          AGGRESSIVE                    ANCIENT                       12                            
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-FIREBALL                      FROSTBALL                     FLY                           LEAPING                       
-12.34                         12.34                         96.40                         16.40                         
+FIREBALL                      FROSTBALL                     FLYING                        LEAPING                       
+12.34                         12.34                         93.60                         16.40                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             34.37 meters   |  Recommended safe distance: 68.74 meters
- 
-==================================================================================================================
-                                   THANK YOU FOR USING THE INFORMATION PROVIDED!
-                            it will be documented immediately for future players to use!
-==================================================================================================================
+                             33.67 meters   |  Recommended safe distance: 67.34 meters
  
 
 
@@ -39,21 +34,21 @@ FIREBALL                      FROSTBALL                     FLY                 
 
 GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
 ------------------------------------------------------------------------------------------------------------------
-DESTINY 2                     FALLEN                        MAJOR                         25                            
+BORDERLANDS                   HUMAN                         MAJOR                         25                            
 
 
 WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
 ------------------------------------------------------------------------------------------------------------------
-WATER                         Passive                       Adult                         4.20                          
+FIRE                          CAUTIOUS                      ADULT                         7.00                          
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-GUNFIRE                       SHOCKNADE                     None                          None                          
-100.00                        15.00                         0.00                          0.00                          
+GUNFIRE                       GRENADE                       None                          None                          
+53.00                         12.60                         0.00                          0.00                          
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             57.50 meters   |  Recommended safe distance: 115.00 meters
+                             32.80 meters   |  Recommended safe distance: 65.60 meters
  
 ==================================================================================================================
                                    THANK YOU FOR USING THE INFORMATION PROVIDED!

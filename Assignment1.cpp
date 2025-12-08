@@ -3,19 +3,24 @@
 
 //*************************************************************************************************************************
 //
-// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM! (WEEK 6 - ENUM / ARRAY VERSION)
+// WELCOME TO MY COMBATANT DOCUMENTOR PROGRAM! (WEEK 7 - STRUCT VERSION)
 // This program collects data about an enemy encountered in a video game, makes a nice summary of all the information 
 // provided and calculated then stores it in a text file and offers a menu choice of the following 3 options:
 // 1 to view the summary, 2 to view all given inputs, and 3 to end the program.
 //
 //*************************************************************************************************************************
 //
+// You will choose how many enemies u observed (Up to 10)
 //
 // You will provide the following information:
 // - Name of the game being played
 // - Race of the enemy encountered
 // - Classification of the enemy (BOSS, ELITE, MAJOR, MINOR)
 // - Remaining health of the enemy when first encountered
+// - The Weakness of the enemy
+// - The Nature of the enemy
+// - The Maturity of the enemy
+// - The Height of the enemy
 // 
 // THE PROGRAM WILL ASK THE USER TO CONFIRM IF THE INPUTS ARE CORRECT OR IF THEY WANT TO RESTART
 // - The user will be able to Restart, continue, or exit.
@@ -54,8 +59,11 @@ bool flag = false;					// THIS ONE KILLS LOOPS
 bool killswitch = false;			// THIS ONE KILLS THE PROGRAM
 string end_or_continue;				// THIS ONE ASKS THE USER IF THEY WANT TO KILL SOMETHING
 
+
+// GLOBAL STRUCT
 struct Combatant
 	{
+		// THESE ARE THE MEMBERS OF COMBATANT
 		string Game = "";						// this variable stores the name of the game
 		string Race = "";					// this variable stores the name of the enemy
 		string Classification = ""; 		// this variable stores the classification of the enemy	
@@ -77,8 +85,6 @@ struct Combatant
 
 		
 	};
-
-
 
 
 
@@ -386,7 +392,7 @@ double get_Height(){
 	double EnemyHeight;
 	while (true)
 	{
-		cout << "What is the Height of this enemy? (Provide either an integer or decimal value)" << endl;
+		cout << "What is the Height (in feet) of this enemy? (Provide either an integer or decimal value)" << endl;
 		cout << "Height: ";
 		
 
@@ -765,7 +771,7 @@ int main() {
 
 	while (true){
 
-	
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 		cout << "THIS PROGRAM GIVES YOU THE CHOICE TO DETERMINE THE AMOUNT OF ENEMIES YOU WISH TO DOCUMENT (1 REQUIRED | UP TO 10)." << endl;
 		cout << "CHOOSE AN INTEGER AMOUNT. (THE LARGER THE NUMBER, THE LONGER THE PROGRAM TAKES TO FINISH) " << endl;
 
@@ -798,7 +804,7 @@ int main() {
 
 	const double safe_distance_multiplier = 2.0; // THIS CONSTANT MULTIPLIER WILL BE USED TO CALCULATE THE RECOMMENDED SAFE DISTANCE
 
-	Combatant Enemy[10];
+	Combatant Enemy[10];				// THIS IS MY ENEMY ARRAY THAT HOLDS 10 COMBATANT OBJECTS/INSTANCES.
 	//*************************************************************************************************************************
 
 
