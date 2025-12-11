@@ -49,7 +49,7 @@
 #include <iomanip>  // This lets me use setprecision
 #include <string>   // This lets me use string variables
 #include <fstream>  // This lets me use file input and output
-#include <windows.h>
+#include <windows.h> // this lets me manipulate color
 
 // GLOBAL NAMESPACE
 using namespace std; // allows the user to use cout, cin, and endl without std::
