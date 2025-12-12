@@ -8,47 +8,63 @@
 
 GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
 ------------------------------------------------------------------------------------------------------------------
-DESTINY 2                     CABAL                         BOSS                          50                            
+d2                            d2                            BOSS                          50                            
 
 
 WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
 ------------------------------------------------------------------------------------------------------------------
-FIRE                          AGGRESSIVE                    ANCIENT                       12                            
+FIRE                          AGGRESSIVE                    ANCIENT                       12.6                          
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-FIREBALL                      FROSTBALL                     FLYING                        LEAPING                       
-12.34                         12.34                         93.60                         16.40                         
+FIREBALL                      FIREBALL                      FIREBEEE                      FELR                          
+12.34                         12.34                         12.34                         12.34                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             33.67 meters   |  Recommended safe distance: 67.34 meters
+                             12.34 meters   |  Recommended safe distance: 24.68 meters
+------------------------------------------------------------------------------------------------------------------
  
-
-
-
-==================================================================================================================
-                                                      SUMMARY OF THE ENEMY #2
-==================================================================================================================
-
-
-GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
+UNDERLING #1                  NAME: MOJO
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+NOSE                          NOSE2                         NOSER                         SCHNOZE                       
 ------------------------------------------------------------------------------------------------------------------
-BORDERLANDS                   HUMAN                         MAJOR                         25                            
-
-
-WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
+UNDERLING #2                  NAME: MIKAIL
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+YAP                           GERMAN                        MOREGERMAN                    ANNOYING                      
 ------------------------------------------------------------------------------------------------------------------
-FIRE                          CAUTIOUS                      ADULT                         7.00                          
-
-
-ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
+UNDERLING #3                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
 ------------------------------------------------------------------------------------------------------------------
-GUNFIRE                       GRENADE                       None                          None                          
-53.00                         12.60                         0.00                          0.00                          
-
-                                       AVERAGE RANGE OF ACTIONS (IN METERS)
-                             32.80 meters   |  Recommended safe distance: 65.60 meters
+UNDERLING #4                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
+UNDERLING #5                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
+UNDERLING #6                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
+UNDERLING #7                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
+UNDERLING #8                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
+UNDERLING #9                  NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
+UNDERLING #10                 NAME: None
+ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
+None                          None                          None                          None                          
+------------------------------------------------------------------------------------------------------------------
  
 ==================================================================================================================
                                    THANK YOU FOR USING THE INFORMATION PROVIDED!
