@@ -8,62 +8,28 @@
 
 GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
 ------------------------------------------------------------------------------------------------------------------
-d2                            d2                            BOSS                          50                            
+DESTINY 2                     CABAL                         BOSS                          50                            
 
 
 WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
 ------------------------------------------------------------------------------------------------------------------
-FIRE                          AGGRESSIVE                    ANCIENT                       12.6                          
+FIRE                          AGGRESSIVE                    ANCIENT                       16.4                          
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
-FIREBALL                      FIREBALL                      FIREBEEE                      FELR                          
-12.34                         12.34                         12.34                         12.34                         
+FIREBALL                      FROSTBALL                     FLYING                        LEAPING                       
+12.34                         12.34                         96.40                         12.60                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             12.34 meters   |  Recommended safe distance: 24.68 meters
+                             33.42 meters   |  Recommended safe distance: 66.84 meters
 ------------------------------------------------------------------------------------------------------------------
  
+                                             OBSERVED UNDERLING INFORMATION
+------------------------------------------------------------------------------------------------------------------
 UNDERLING #1                  NAME: MOJO
 ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-NOSE                          NOSE2                         NOSER                         SCHNOZE                       
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #2                  NAME: MIKAIL
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-YAP                           GERMAN                        MOREGERMAN                    ANNOYING                      
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #3                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #4                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #5                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #6                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #7                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #8                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #9                  NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
-------------------------------------------------------------------------------------------------------------------
-UNDERLING #10                 NAME: None
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-None                          None                          None                          None                          
+NOSE                          SCHNOZE                       GIGANOSE                      SUPERBIGNOSE                  
 ------------------------------------------------------------------------------------------------------------------
  
 ==================================================================================================================

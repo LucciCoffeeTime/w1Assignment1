@@ -60,11 +60,7 @@ bool killswitch = false;			// THIS ONE KILLS THE PROGRAM
 string end_or_continue;				// THIS ONE ASKS THE USER IF THEY WANT TO KILL SOMETHING
 
 
-struct underlings
-{
-	string name;
-	string actions[4];
-};
+
 
 // GLOBAL CLASS
 class Combatant
@@ -72,6 +68,11 @@ class Combatant
 	// THESE ARE THE MEMBERS OF COMBATANT
 
 	// PRIVATE
+	struct underlings
+	{
+		string name;
+		string actions[4];
+	};
 
 	underlings underling[10];
 
@@ -81,8 +82,8 @@ class Combatant
 
 		Combatant() // CONSTRUCTOR
 		{
-			int underlingamount = 10;
-			int maxactions = 4;
+			const int underlingamount = 10;  // MAX AMOUNT OF UNDERLINGS
+			const int maxactions = 4; // MAX AMOUNT OF ACTIONS PER UNDERLING
 			for(int j = 0; j < underlingamount; j++)
 			{
 				underling[j].name = "None";
@@ -139,21 +140,21 @@ class Combatant
 
 		
 		//FUNCTIONS
-		void underlingfunction(int amount);
-		string getunderlingsnames(int index_enemy_number);
-		string getunderlingnsactions(int index_enemy_number, int index_action_number);
-		void banner();
-		string get_gametype();
-		string get_enemyrace();
-		string get_classification();
-		int observedhealth(string Classification, int &ObservedHealth, int &MaximumHealth);
-		string get_weakness();
-		string get_Nature();
-		string get_Maturity();
-		double get_Height();
-		int get_actioncount(string Classification);
-		void get_actions(int ActionCount, string (&ActionNameValues)[4]);
-		double get_ranges(string Classification, string (&ActionNameValues)[4], double (&ActionRangeValues)[4], int ActionCount);
+		void underlingfunction(int amount); // names each underling and their actions
+		string getunderlingsnames(int index_enemy_number); // gets underling names
+		string getunderlingnsactions(int index_enemy_number, int index_action_number); // gets underling actions
+		void banner() const; // produces the banner and will not change any values
+		string get_gametype(); // gets the game type
+		string get_enemyrace(); // gets the enemy race
+		string get_classification(); // gets the classification
+		int observedhealth(string Classification, int &ObservedHealth, int &MaximumHealth); // gets the observed health and calculates damage done
+		string get_weakness(); // gets the weakness
+		string get_Nature(); // gets the nature
+		string get_Maturity(); // gets the maturity
+		double get_Height(); // gets the height
+		int get_actioncount(string Classification); // gets the action count based on classification
+		void get_actions(int ActionCount, string (&ActionNameValues)[4]); // gets the actions based on action count
+		double get_ranges(string Classification, string (&ActionNameValues)[4], double (&ActionRangeValues)[4], int ActionCount); // gets the ranges based on action count
 
 };
 
@@ -210,7 +211,7 @@ string Combatant::getunderlingnsactions(int index_enemy_number, int index_action
 // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  
 // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  // PRODUCE BANNER  
 
-void Combatant::banner(){
+void Combatant::banner() const {
 	const string border_long = "==============================================================";
 	cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl; 
 	// this line creates space at the top of the console window for better formatting	
@@ -661,7 +662,7 @@ void reportfile(Combatant Enemy[10], int CombatantCount, int underlingcount){
 		if (underlingcount == 1) {
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
@@ -669,12 +670,12 @@ void reportfile(Combatant Enemy[10], int CombatantCount, int underlingcount){
 		else if (underlingcount == 2) {
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
@@ -682,269 +683,269 @@ void reportfile(Combatant Enemy[10], int CombatantCount, int underlingcount){
 		else if (underlingcount == 3) {
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 4){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 5){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
+			outdata << left << setw(14) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling5, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 6){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
+			outdata << left << setw(14) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling5, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
+			outdata << left << setw(14) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling6, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 7){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
+			outdata << left << setw(14) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling5, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
+			outdata << left << setw(14) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling6, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
+			outdata << left << setw(14) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling7, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 8){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
+			outdata << left << setw(14) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling5, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
+			outdata << left << setw(14) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling6, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
+			outdata << left << setw(14) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling7, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #8 " << "NAME: " << Enemy[J].getunderlingsnames(underling8)<< endl;
+			outdata << left << setw(14) << "UNDERLING #8 " << "NAME: " << Enemy[J].getunderlingsnames(underling8)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling8, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 9){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
+			outdata << left << setw(14) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling5, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
+			outdata << left << setw(14) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling6, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
+			outdata << left << setw(14) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling7, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #8 " << "NAME: " << Enemy[J].getunderlingsnames(underling8)<< endl;
+			outdata << left << setw(14) << "UNDERLING #8 " << "NAME: " << Enemy[J].getunderlingsnames(underling8)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling8, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #9 " << "NAME: " << Enemy[J].getunderlingsnames(underling9)<< endl;
+			outdata << left << setw(14) << "UNDERLING #9 " << "NAME: " << Enemy[J].getunderlingsnames(underling9)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling9, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling9, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling9, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling9, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 		}
 		else if (underlingcount == 10){
-			outdata << left << setw(30) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
+			outdata << left << setw(14) << "UNDERLING #1 " << "NAME: " << Enemy[J].getunderlingsnames(underling1)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling1, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling1, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
+			outdata << left << setw(14) << "UNDERLING #2 " << "NAME: " << Enemy[J].getunderlingsnames(underling2)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling2, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling2, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
+			outdata << left << setw(14) << "UNDERLING #3 " << "NAME: " << Enemy[J].getunderlingsnames(underling3)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling3, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling3, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 			
-			outdata << left << setw(30) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
+			outdata << left << setw(14) << "UNDERLING #4 " << "NAME: " << Enemy[J].getunderlingsnames(underling4)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling4, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling4, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
+			outdata << left << setw(14) << "UNDERLING #5 " << "NAME: " << Enemy[J].getunderlingsnames(underling5)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling5, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling5, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
+			outdata << left << setw(14) << "UNDERLING #6 " << "NAME: " << Enemy[J].getunderlingsnames(underling6)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling6, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling6, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
+			outdata << left << setw(14) << "UNDERLING #7 " << "NAME: " << Enemy[J].getunderlingsnames(underling7)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling7, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling7, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #8 " << "NAME: " << Enemy[J].getunderlingsnames(underling8)<< endl;
+			outdata << left << setw(14) << "UNDERLING #8 " << "NAME: " << Enemy[J].getunderlingsnames(underling8)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling8, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling8, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #9 " << "NAME: " << Enemy[J].getunderlingsnames(underling9)<< endl;
+			outdata << left << setw(14) << "UNDERLING #9 " << "NAME: " << Enemy[J].getunderlingsnames(underling9)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling9, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling9, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling9, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling9, action4) << endl;
 			outdata << border_mega_long_thin << endl;
 
-			outdata << left << setw(30) << "UNDERLING #10 " << "NAME: " << Enemy[J].getunderlingsnames(underling10)<< endl;
+			outdata << left << setw(14) << "UNDERLING #10 " << "NAME: " << Enemy[J].getunderlingsnames(underling10)<< endl;
 			outdata << left << setw(30) << "ACTION #1" << setw(30) << "ACTION #2" << setw(30) << "ACTION #3" << setw(30) << "ACTION #4" << endl;
 			outdata << left << setw(30) << Enemy[J].getunderlingnsactions(underling10, action1) << setw(30) << Enemy[J].getunderlingnsactions(underling10, action2) << setw(30) << Enemy[J].getunderlingnsactions(underling10, action3) << setw(30) << Enemy[J].getunderlingnsactions(underling10, action4) << endl;
 			outdata << border_mega_long_thin << endl;
@@ -1051,7 +1052,6 @@ void openmenu(Combatant Enemy[10], int CombatantCount, int underlingcount){
 						cout << "NATURE PROVIDED: " << Enemy[J].Nature << endl;
 						cout << "MATURITY PROVIDED: " << Enemy[J].Maturity << endl;
 						cout << "HEIGHT PROVIDED: " << Enemy[J].Height << " meters" << endl;
-
 						cout << " " << endl;
 					}
 					cout << "Type anything in the terminal to continue: " << endl;
