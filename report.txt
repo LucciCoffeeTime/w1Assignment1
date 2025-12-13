@@ -8,29 +8,37 @@
 
 GAME                          RACE                          CLASSIFICATION                HEALTH MISSING                
 ------------------------------------------------------------------------------------------------------------------
-DESTINY 2                     CABAL                         BOSS                          50                            
+destiny                       cabal                         BOSS                          80                            
 
 
 WEAKNESS                      NATURE                        MATURITY                      HEIGHT                        
 ------------------------------------------------------------------------------------------------------------------
-FIRE                          AGGRESSIVE                    ANCIENT                       16.4                          
+FIRE                          AGGRESSIVE                    ANCIENT                       12.6                          
 
 
 ACTION 1 + Distance           ACTION 2 + Distance           ACTION 3 + Distance           ACTION 4 + Distance           
 ------------------------------------------------------------------------------------------------------------------
 FIREBALL                      FROSTBALL                     FLYING                        LEAPING                       
-12.34                         12.34                         96.40                         12.60                         
+12.34                         12.34                         96.30                         16.40                         
 
                                        AVERAGE RANGE OF ACTIONS (IN METERS)
-                             33.42 meters   |  Recommended safe distance: 66.84 meters
+                             34.34 meters   |  Recommended safe distance: 68.69 meters
 ------------------------------------------------------------------------------------------------------------------
  
+------------------------------------------------------------------------------------------------------------------
                                              OBSERVED UNDERLING INFORMATION
 ------------------------------------------------------------------------------------------------------------------
-UNDERLING #1                  NAME: MOJO
-ACTION #1                     ACTION #2                     ACTION #3                     ACTION #4                     
-NOSE                          SCHNOZE                       GIGANOSE                      SUPERBIGNOSE                  
+ 
+ | UNDERLING #1 NAME: MOJO |
+ACTION 1                      ACTION 2                      ACTION 3                      ACTION 4                      
+FLY                           SLASH                         FIRE                          FROST                         
 ------------------------------------------------------------------------------------------------------------------
+ 
+ | UNDERLING #2 NAME: MIKAIL |
+ACTION 1                      ACTION 2                      ACTION 3                      ACTION 4                      
+SCREAM                        FLY                           SLASH                         LEAPHIGH                      
+------------------------------------------------------------------------------------------------------------------
+ 
  
 ==================================================================================================================
                                    THANK YOU FOR USING THE INFORMATION PROVIDED!
