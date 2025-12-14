@@ -26,15 +26,15 @@ This program is a combatant documentor. Imagine a video game recently launched a
 
 (INBETWEEN 4-6): The program will ask the user for the enemies Weakness, Nature, Maturity, and Height.
 
-(STEP 6): The program will ask the user to input between 1-4 observed actions for the enemy based on the classification.
+(STEP 7): The program will ask the user to input between 1-4 observed actions for the enemy based on the classification.
 - This is a crucial part of the documentation alongside other pieces of information. Information is power and dominion over the enemies. The more you know about an enemy, the higher the chance you will have to clear the fight.
 
-(STEP 7): The program will ask the user to input ranges for each enemy action provided.
+(STEP 8): The program will ask the user to input ranges for each enemy action provided.
 - These ranges not only inform players of the distance each action can cover, but also allows a safe distance to be calculated and recommended.
 
-(STEP 8): The program will ask the user to input the names and actions of all the underlings.
+(STEP 9): The program will ask the user to input the names and actions of all the underlings.
 
-(STEP 9): The program will open a file named "report.txt" and write a pretty summary of all information provided and the calculated values (this acts as a form of documentation).
+(STEP 10): The program will open a file named "report.txt" and write a pretty summary of all information provided and the calculated values (this acts as a form of documentation).
 - In an actual full program, before writing the summary, this would prompt the user to verify the information and make appropriate changes.
 
 (CONCLUSION): The program will output a MENU to the user that offers 3 choices.
@@ -45,4 +45,4 @@ This program is a combatant documentor. Imagine a video game recently launched a
 Thank you for viewing my program. I hope to expand on enemy dicision structures in the future.
 
 ## AN IDEA OF WHAT THE PROGRAM MIGHT FEATURE IN THE FUTURE IF WE ARE ALLOWED TO CONTINUE WORKING ON IT
-Eventually, I want this program to be more accessible to user input and be able to document more information. Features like action-health-gates, speeds, location, relocation, and more might be added. However, I am very limited right now due to not being able to use loops. Eventually, I want to gain a full understanding of how decision structures work. Coding this program is my way to understand it.
+Eventually, I want this program to be more accessible to user input and be able to document more information. Features like action-health-gates, speeds, location, relocation, and more might be added. 
